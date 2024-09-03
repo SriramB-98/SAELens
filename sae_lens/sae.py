@@ -290,7 +290,7 @@ class SAE(HookedRootModule):
     def initialize_weights_jumprelu(self):
         # The params are identical to the standard SAE
         # except we use a threshold parameter too
-        self.threshold = nn.Parameter(
+        self.log_threshold = nn.Parameter(
             torch.zeros(self.cfg.d_sae, dtype=self.dtype, device=self.device)
         )
         self.b_enc = nn.Parameter(
@@ -451,7 +451,8 @@ class SAE(HookedRootModule):
                 # "... d_in, d_in d_sae -> ... d_sae",
                 hidden_pre = sae_in @ self.W_enc + self.b_enc
                 feature_acts = self.hook_sae_acts_post(
-                    self.activation_fn(hidden_pre) * (hidden_pre > self.threshold)
+                    self.activation_fn(hidden_pre)
+                    * (hidden_pre > torch.exp(self.log_threshold))
                 )
                 x_reconstruct_clean = self.reshape_fn_out(
                     self.apply_finetuning_scaling_factor(feature_acts) @ self.W_dec
@@ -512,7 +513,8 @@ class SAE(HookedRootModule):
         hidden_pre = self.hook_sae_acts_pre(sae_in @ self.W_enc + self.b_enc)
 
         feature_acts = self.hook_sae_acts_post(
-            self.activation_fn(hidden_pre) * (hidden_pre > self.threshold)
+            self.activation_fn(hidden_pre)
+            * (hidden_pre > torch.exp(self.log_threshold))
         )
 
         return feature_acts

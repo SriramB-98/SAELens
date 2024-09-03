@@ -18,6 +18,7 @@ from sae_lens.toolkit.pretrained_sae_loaders import (
     handle_config_defaulting,
     read_sae_from_disk,
 )
+from sae_lens.training.jump_relu import JumpReLU, Step
 
 SPARSITY_PATH = "sparsity.safetensors"
 SAE_WEIGHTS_PATH = "sae_weights.safetensors"
@@ -50,6 +51,8 @@ class TrainingSAEConfig(SAEConfig):
     decoder_heuristic_init: bool = False
     init_encoder_as_decoder_transpose: bool = False
     scale_sparsity_penalty_by_decoder_norm: bool = False
+    threshold_init_value: float = 0.001
+    bandwidth: float = 0.001
 
     @classmethod
     def from_sae_runner_config(
@@ -76,6 +79,8 @@ class TrainingSAEConfig(SAEConfig):
             dataset_path=cfg.dataset_path,
             prepend_bos=cfg.prepend_bos,
             # Training cfg
+            threshold_init_value=cfg.threshold_init_value,
+            bandwidth=cfg.bandwidth,
             l1_coefficient=cfg.l1_coefficient,
             lp_norm=cfg.lp_norm,
             use_ghost_grads=cfg.use_ghost_grads,
@@ -103,6 +108,8 @@ class TrainingSAEConfig(SAEConfig):
     def to_dict(self) -> dict[str, Any]:
         return {
             **super().to_dict(),
+            "threshold_init_value": self.threshold_init_value,
+            "bandwidth": self.bandwidth,
             "l1_coefficient": self.l1_coefficient,
             "lp_norm": self.lp_norm,
             "use_ghost_grads": self.use_ghost_grads,
@@ -157,13 +164,23 @@ class TrainingSAE(SAE):
 
         base_sae_cfg = SAEConfig.from_dict(cfg.get_base_sae_cfg_dict())
         super().__init__(base_sae_cfg)
+
         self.cfg = cfg  # type: ignore
 
-        self.encode_with_hidden_pre_fn = (
-            self.encode_with_hidden_pre
-            if cfg.architecture != "gated"
-            else self.encode_with_hidden_pre_gated
-        )
+        if cfg.architecture == "jumprelu":
+            if cfg.threshold_init_value < 0:
+                raise ValueError("Threshold value must be positive for JumpReLU")
+            self.log_threshold.data = torch.log(
+                cfg.threshold_init_value * torch.ones_like(self.log_threshold.data)
+            )
+            self.bandwidth = cfg.bandwidth
+
+        if cfg.architecture == "gated":
+            self.encode_with_hidden_pre_fn = self.encode_with_hidden_pre_gated
+        elif cfg.architecture == "jumprelu":
+            self.encode_with_hidden_pre_fn = self.encode_with_hidden_pre_jumprelu
+        else:
+            self.encode_with_hidden_pre_fn = self.encode_with_hidden_pre
 
         self.check_cfg_compatibility()
 
@@ -218,6 +235,28 @@ class TrainingSAE(SAE):
 
         return feature_acts, hidden_pre_noised
 
+    def encode_with_hidden_pre_jumprelu(
+        self, x: Float[torch.Tensor, "... d_in"]
+    ) -> tuple[Float[torch.Tensor, "... d_sae"], Float[torch.Tensor, "... d_sae"]]:
+
+        JumpReLU.BANDWIDTH = self.bandwidth
+
+        x = x.to(self.dtype)
+        x = self.reshape_fn_in(x)  # type: ignore
+        x = self.hook_sae_input(x)
+        x = self.run_time_activation_norm_fn_in(x)
+
+        # apply b_dec_to_input if using that method.
+        sae_in = x - (self.b_dec * self.cfg.apply_b_dec_to_input)
+
+        hidden_pre = self.hook_sae_acts_pre(sae_in @ self.W_enc + self.b_enc)
+
+        feature_acts = self.hook_sae_acts_post(
+            JumpReLU.apply(hidden_pre, torch.exp(self.log_threshold))
+        )
+
+        return feature_acts, hidden_pre
+
     def encode_with_hidden_pre_gated(
         self, x: Float[torch.Tensor, "... d_in"]
     ) -> tuple[Float[torch.Tensor, "... d_sae"], Float[torch.Tensor, "... d_sae"]]:
@@ -268,7 +307,7 @@ class TrainingSAE(SAE):
 
         # do a forward pass to get SAE out, but we also need the
         # hidden pre.
-        feature_acts, _ = self.encode_with_hidden_pre_fn(sae_in)
+        feature_acts, pre_acts = self.encode_with_hidden_pre_fn(sae_in)
         sae_out = self.decode(feature_acts)
 
         # MSE LOSS
@@ -313,6 +352,23 @@ class TrainingSAE(SAE):
             ).mean()
 
             loss = mse_loss + l1_loss + aux_reconstruction_loss
+        elif self.cfg.architecture == "jumprelu":
+            # JumpReLU SAE Loss Calculation
+
+            # "L0" sparsity loss - summed over the feature dimension and averaged over the batch
+            Step.BANDWIDTH = self.bandwidth
+            l0 = torch.sum(
+                Step.apply(pre_acts, torch.exp(self.log_threshold)), dim=-1
+            ).mean()
+
+            weighted_feature_acts = feature_acts * self.W_dec.norm(dim=1)
+            sparsity = weighted_feature_acts.norm(p=self.cfg.lp_norm, dim=-1)
+            l1_loss = (current_l1_coefficient * sparsity).mean()
+
+            # TODO: rename l1_loss to sparsity_loss
+            loss = mse_loss + current_l1_coefficient * l0
+
+            aux_reconstruction_loss = torch.tensor(0.0)
         else:
             # default SAE sparsity loss
             weighted_feature_acts = feature_acts * self.W_dec.norm(dim=1)
@@ -512,13 +568,17 @@ class TrainingSAE(SAE):
         """
         assert self.W_dec.grad is not None  # keep pyright happy
 
+        W_dec_normed = self.W_dec.data / (
+            torch.norm(self.W_dec.data, dim=-1, keepdim=True) + 1e-6
+        )
+
         parallel_component = einops.einsum(
             self.W_dec.grad,
-            self.W_dec.data,
+            W_dec_normed,
             "d_sae d_in, d_sae d_in -> d_sae",
         )
         self.W_dec.grad -= einops.einsum(
             parallel_component,
-            self.W_dec.data,
+            W_dec_normed,
             "d_sae, d_sae d_in -> d_sae d_in",
         )

@@ -127,7 +127,7 @@ class LanguageModelSAERunnerConfig:
     )
 
     # SAE Parameters
-    architecture: Literal["standard", "gated"] = "standard"
+    architecture: Literal["standard", "gated", "jumprelu"] = "standard"
     d_in: int = 512
     d_sae: Optional[int] = None
     b_dec_init_method: str = "geometric_median"
@@ -168,6 +168,10 @@ class LanguageModelSAERunnerConfig:
     sae_compilation_mode: str | None = None
 
     # Training Parameters
+
+    ## Initilaization
+    threshold_init_value: float = 0.001
+    bandwidth: float = 0.001
 
     ## Batch size
     train_batch_size_tokens: int = 4096
@@ -380,6 +384,8 @@ class LanguageModelSAERunnerConfig:
     def get_training_sae_cfg_dict(self) -> dict[str, Any]:
         return {
             **self.get_base_sae_cfg_dict(),
+            "threshold_init_value": self.threshold_init_value,
+            "bandwidth": self.bandwidth,
             "l1_coefficient": self.l1_coefficient,
             "lp_norm": self.lp_norm,
             "use_ghost_grads": self.use_ghost_grads,
@@ -484,7 +490,7 @@ class CacheActivationsRunnerConfig:
 @dataclass
 class ToyModelSAERunnerConfig:
 
-    architecture: Literal["standard", "gated"] = "standard"
+    architecture: Literal["standard", "gated", "jumprelu"] = "standard"
 
     # ReLu Model Parameters
     n_features: int = 5

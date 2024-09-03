@@ -214,9 +214,6 @@ class SAETrainer:
     ) -> TrainStepOutput:
 
         sae.train()
-        # Make sure the W_dec is still zero-norm
-        if self.cfg.normalize_sae_decoder:
-            sae.set_decoder_norm_to_unit_norm()
 
         # log and then reset the feature sparsity every feature_sampling_window steps
         if (self.n_training_steps + 1) % self.cfg.feature_sampling_window == 0:
@@ -248,14 +245,20 @@ class SAETrainer:
         self.scaler.scale(
             train_step_output.loss
         ).backward()  # loss.backward() if not autocasting
-        self.scaler.unscale_(self.optimizer)  # needed to clip correctly
-        # TODO: Work out if grad norm clipping should be in config / how to test it.
-        torch.nn.utils.clip_grad_norm_(sae.parameters(), 1.0)
-        self.scaler.step(self.optimizer)  # just ctx.optimizer.step() if not autocasting
-        self.scaler.update()
 
         if self.cfg.normalize_sae_decoder:
             sae.remove_gradient_parallel_to_decoder_directions()
+
+        # self.scaler.unscale_(self.optimizer)  # needed to clip correctly
+        # TODO: Work out if grad norm clipping should be in config / how to test it.
+        # torch.nn.utils.clip_grad_norm_(sae.parameters(), 1.0)
+
+        self.scaler.step(self.optimizer)  # just ctx.optimizer.step() if not autocasting
+        self.scaler.update()
+
+        # Make sure the W_dec is still zero-norm
+        if self.cfg.normalize_sae_decoder:
+            sae.set_decoder_norm_to_unit_norm()
 
         self.optimizer.zero_grad()
         self.lr_scheduler.step()
