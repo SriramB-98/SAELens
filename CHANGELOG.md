@@ -2,6 +2,57 @@
 
 
 
+## v3.19.3 (2024-09-04)
+
+### Fix
+
+* fix: more gemma scope canonical ids + a few canonical ids were off.  (#280)
+
+* fix model name in config for it models
+
+* add 9b non-standard sizes
+
+* fix att 131k canonical that were off
+
+* fix mlp 131k canonical that were off ([`aa3e733`](https://github.com/jbloomAus/SAELens/commit/aa3e733a352052b7b27b48b9617cea99099b4c0a))
+
+
+## v3.19.2 (2024-09-04)
+
+### Fix
+
+* fix: centre writing weights defaults (#279)
+
+* add model_from_pretrained_kwargs to SAE config
+
+* default to using no processing when training SAEs
+
+* add centre writing weights true as config override for some SAEs
+
+* add warning about from pretrained kwargs
+
+* fix saving of config by trainer
+
+* fix: test ([`7c0d1f7`](https://github.com/jbloomAus/SAELens/commit/7c0d1f70e5169b1209fccf2280ebeb82b5e5917b))
+
+
+## v3.19.1 (2024-09-04)
+
+### Chore
+
+* chore: Update usage of Neuronpedia explanations export (#267)
+
+Co-authored-by: David Chanin &lt;chanindav@gmail.com&gt; ([`f100aed`](https://github.com/jbloomAus/SAELens/commit/f100aedfda14f11206b69f5e210dd5d6e31832d4))
+
+### Fix
+
+* fix: reset hooks before saes in tutorial (#278) ([`2c225fd`](https://github.com/jbloomAus/SAELens/commit/2c225fd1d5c35325f075c0580d65101990e50e94))
+
+### Unknown
+
+* updating howpublished url in docs (#270) ([`25d9ba4`](https://github.com/jbloomAus/SAELens/commit/25d9ba4fe5d7b9b347aafac38792b95379b8151c))
+
+
 ## v3.19.0 (2024-09-03)
 
 ### Chore
