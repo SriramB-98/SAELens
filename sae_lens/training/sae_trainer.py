@@ -362,6 +362,11 @@ class SAETrainer:
                 eval_metrics["weights/b_gate"] = wandb.Histogram(b_gate_dist)  # type: ignore
                 b_mag_dist = self.sae.b_mag.detach().float().cpu().numpy()
                 eval_metrics["weights/b_mag"] = wandb.Histogram(b_mag_dist)  # type: ignore
+            elif self.sae.cfg.architecture == "jumprelu":
+                threshold_dist = torch.exp(self.sae.log_threshold.detach()).float().cpu().numpy()
+                eval_metrics["weights/threshold"] = wandb.Histogram(threshold_dist)
+                eval_metrics["weights/threshold_mean"] = threshold_dist.mean()
+                eval_metrics["weights/threshold_std"] = threshold_dist.std()
 
             wandb.log(
                 eval_metrics,
