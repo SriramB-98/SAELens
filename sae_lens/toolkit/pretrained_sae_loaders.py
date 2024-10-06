@@ -5,7 +5,7 @@ from typing import Any, Dict, Optional, Protocol, Tuple
 import numpy as np
 import torch
 from huggingface_hub import hf_hub_download
-from huggingface_hub.utils._errors import EntryNotFoundError
+from huggingface_hub.utils import EntryNotFoundError
 from safetensors import safe_open
 
 
@@ -271,6 +271,7 @@ def get_gemma_2_config(
 ) -> Dict[str, Any]:
     # Detect width from folder_name
     width_map = {
+        "width_4k": 4096,
         "width_16k": 16384,
         "width_32k": 32768,
         "width_65k": 65536,
@@ -291,10 +292,16 @@ def get_gemma_2_config(
     match = re.search(r"layer_(\d+)", folder_name)
     layer = int(match.group(1)) if match else layer_override
     if layer is None:
-        raise ValueError("Layer not found in folder_name and no override provided.")
+        if "embedding" in folder_name:
+            layer = 0
+        else:
+            raise ValueError("Layer not found in folder_name and no override provided.")
 
     # Model specific parameters
     model_params = {
+        "2b-it": {"name": "gemma-2-2b-it", "d_in": 2304},
+        "9b-it": {"name": "gemma-2-9b-it", "d_in": 3584},
+        "27b-it": {"name": "gemma-2-27b-it", "d_in": 4608},
         "2b": {"name": "gemma-2-2b", "d_in": 2304},
         "9b": {"name": "gemma-2-9b", "d_in": 3584},
         "27b": {"name": "gemma-2-27b", "d_in": 4608},
@@ -308,8 +315,10 @@ def get_gemma_2_config(
     model_name, d_in = model_info["name"], model_info["d_in"]
 
     # Hook specific parameters
-    if "res" in repo_id:
+    if "res" in repo_id and "embedding" not in folder_name:
         hook_name = f"blocks.{layer}.hook_resid_post"
+    elif "res" in repo_id and "embedding" in folder_name:
+        hook_name = "hook_embed"
     elif "mlp" in repo_id:
         hook_name = f"blocks.{layer}.hook_mlp_out"
     elif "att" in repo_id:
@@ -395,7 +404,100 @@ def gemma_2_sae_loader(
     # No sparsity tensor for Gemma 2 SAEs
     log_sparsity = None
 
+    # if it is an embedding SAE, then we need to adjust for the scale of d_model because of how they trained it
+    if "embedding" in folder_name:
+        print("Adjusting for d_model in embedding SAE")
+        state_dict["W_enc"].data = state_dict["W_enc"].data / np.sqrt(cfg_dict["d_in"])
+        state_dict["W_dec"].data = state_dict["W_dec"].data * np.sqrt(cfg_dict["d_in"])
+
     return cfg_dict, state_dict, log_sparsity
+
+
+def get_dictionary_learning_config_1(config: dict[str, Any]) -> dict[str, Any]:
+    """
+    Suitable for SAEs from https://huggingface.co/canrager/lm_sae.
+    """
+    trainer = config["trainer"]
+    buffer = config["buffer"]
+
+    hook_point_name = f"blocks.{trainer['layer']}.hook_resid_post"
+
+    activation_fn_str = "topk" if "topk" in config.get("path", "") else "relu"
+    activation_fn_kwargs = {"k": trainer["k"]} if activation_fn_str == "topk" else {}
+
+    return {
+        "architecture": (
+            "gated" if trainer["dict_class"] == "GatedAutoEncoder" else "standard"
+        ),
+        "d_in": trainer["activation_dim"],
+        "d_sae": trainer["dict_size"],
+        "dtype": "float32",
+        "device": "cpu",
+        "model_name": trainer["lm_name"].split("/")[-1],
+        "hook_name": hook_point_name,
+        "hook_layer": trainer["layer"],
+        "hook_head_index": None,
+        "activation_fn_str": activation_fn_str,
+        "activation_fn_kwargs": activation_fn_kwargs,
+        "apply_b_dec_to_input": True,
+        "finetuning_scaling_factor": False,
+        "sae_lens_training_version": None,
+        "prepend_bos": True,
+        "dataset_path": "monology/pile-uncopyrighted",
+        "dataset_trust_remote_code": False,
+        "context_size": buffer["ctx_len"],
+        "normalize_activations": "none",
+        "neuronpedia_id": None,
+    }
+
+
+def dictionary_learning_sae_loader_1(
+    repo_id: str,
+    folder_name: str,
+    device: str = "cpu",
+    force_download: bool = False,
+    cfg_overrides: Optional[dict[str, Any]] = None,
+) -> tuple[dict[str, Any], dict[str, torch.Tensor], Optional[torch.Tensor]]:
+    """
+    Suitable for SAEs from https://huggingface.co/canrager/lm_sae.
+    """
+    config_path = hf_hub_download(
+        repo_id=repo_id,
+        filename=f"{folder_name}/config.json",
+        force_download=force_download,
+    )
+    encoder_path = hf_hub_download(
+        repo_id=repo_id, filename=f"{folder_name}/ae.pt", force_download=force_download
+    )
+
+    with open(config_path, "r") as f:
+        config = json.load(f)
+
+    cfg_dict = get_dictionary_learning_config_1(config)
+    if cfg_overrides:
+        cfg_dict.update(cfg_overrides)
+
+    encoder = torch.load(encoder_path, map_location="cpu")
+
+    state_dict = {
+        "W_enc": encoder["encoder.weight"].T,
+        "W_dec": encoder["decoder.weight"].T,
+        "b_dec": encoder.get(
+            "b_dec", encoder.get("bias", encoder.get("decoder_bias", None))
+        ),
+    }
+
+    if "encoder.bias" in encoder:
+        state_dict["b_enc"] = encoder["encoder.bias"]
+
+    if "mag_bias" in encoder:
+        state_dict["b_mag"] = encoder["mag_bias"]
+    if "gate_bias" in encoder:
+        state_dict["b_gate"] = encoder["gate_bias"]
+    if "r_mag" in encoder:
+        state_dict["r_mag"] = encoder["r_mag"]
+
+    return cfg_dict, state_dict, None
 
 
 # Helper function to get dtype from string
@@ -410,4 +512,5 @@ NAMED_PRETRAINED_SAE_LOADERS: dict[str, PretrainedSaeLoader] = {
     "sae_lens": sae_lens_loader,  # type: ignore
     "connor_rob_hook_z": connor_rob_hook_z_loader,  # type: ignore
     "gemma_2": gemma_2_sae_loader,
+    "dictionary_learning_1": dictionary_learning_sae_loader_1,
 }

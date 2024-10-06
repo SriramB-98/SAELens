@@ -61,6 +61,7 @@ class SAEConfig:
     sae_lens_training_version: Optional[str]
     activation_fn_kwargs: dict[str, Any] = field(default_factory=dict)
     neuronpedia_id: Optional[str] = None
+    model_from_pretrained_kwargs: dict[str, Any] = field(default_factory=dict)
 
     @classmethod
     def from_dict(cls, config_dict: dict[str, Any]) -> "SAEConfig":
@@ -106,6 +107,7 @@ class SAEConfig:
             "context_size": self.context_size,
             "normalize_activations": self.normalize_activations,
             "neuronpedia_id": self.neuronpedia_id,
+            "model_from_pretrained_kwargs": self.model_from_pretrained_kwargs,
         }
 
 
@@ -129,6 +131,16 @@ class SAE(HookedRootModule):
         super().__init__()
 
         self.cfg = cfg
+
+        if cfg.model_from_pretrained_kwargs:
+            warnings.warn(
+                "\nThis SAE has non-empty model_from_pretrained_kwargs. "
+                "\nFor optimal performance, load the model like so:\n"
+                "model = HookedSAETransformer.from_pretrained_no_processing(..., **cfg.model_from_pretrained_kwargs)",
+                category=UserWarning,
+                stacklevel=1,
+            )
+
         self.activation_fn = get_activation_fn(
             cfg.activation_fn_str, **cfg.activation_fn_kwargs or {}
         )
@@ -415,6 +427,13 @@ class SAE(HookedRootModule):
             with torch.no_grad():
                 x = x.to(self.dtype)
                 sae_in = self.reshape_fn_in(x)  # type: ignore
+
+                # handle run time activation normalization if needed
+                sae_in = self.run_time_activation_norm_fn_in(sae_in)
+
+                # apply b_dec_to_input if using that method.
+                sae_in = sae_in - (self.b_dec * self.cfg.apply_b_dec_to_input)
+
                 gating_pre_activation = sae_in @ self.W_enc + self.b_gate
                 active_features = (gating_pre_activation > 0).float()
 
@@ -443,10 +462,10 @@ class SAE(HookedRootModule):
                 sae_in = self.reshape_fn_in(x)  # type: ignore
 
                 # handle run time activation normalization if needed
-                x = self.run_time_activation_norm_fn_in(x)
+                sae_in = self.run_time_activation_norm_fn_in(sae_in)
 
                 # apply b_dec_to_input if using that method.
-                sae_in = x - (self.b_dec * self.cfg.apply_b_dec_to_input)
+                sae_in = sae_in - (self.b_dec * self.cfg.apply_b_dec_to_input)
 
                 # "... d_in, d_in d_sae -> ... d_sae",
                 hidden_pre = sae_in @ self.W_enc + self.b_enc
@@ -484,11 +503,11 @@ class SAE(HookedRootModule):
         magnitude_pre_activation = self.hook_sae_acts_pre(
             sae_in @ (self.W_enc * self.r_mag.exp()) + self.b_mag
         )
-        feature_magnitudes = self.hook_sae_acts_post(
-            self.activation_fn(magnitude_pre_activation)
-        )
+        feature_magnitudes = self.activation_fn(magnitude_pre_activation)
 
-        return active_features * feature_magnitudes
+        feature_acts = self.hook_sae_acts_post(active_features * feature_magnitudes)
+
+        return feature_acts
 
     def encode_jumprelu(
         self, x: Float[torch.Tensor, "... d_in"]
@@ -656,8 +675,34 @@ class SAE(HookedRootModule):
                     f"Release {release} not found in pretrained SAEs directory, and is not a valid huggingface repo."
                 )
         elif sae_id not in sae_directory[release].saes_map:
+            # If using Gemma Scope and not the canonical release, give a hint to use it
+            if (
+                "gemma-scope" in release
+                and "canonical" not in release
+                and f"{release}-canonical" in sae_directory
+            ):
+                canonical_ids = list(
+                    sae_directory[release + "-canonical"].saes_map.keys()
+                )
+                # Shorten the lengthy string of valid IDs
+                if len(canonical_ids) > 5:
+                    str_canonical_ids = str(canonical_ids[:5])[:-1] + ", ...]"
+                else:
+                    str_canonical_ids = str(canonical_ids)
+                value_suffix = f" If you don't want to specify an L0 value, consider using release {release}-canonical which has valid IDs {str_canonical_ids}"
+            else:
+                value_suffix = ""
+
+            valid_ids = list(sae_directory[release].saes_map.keys())
+            # Shorten the lengthy string of valid IDs
+            if len(valid_ids) > 5:
+                str_valid_ids = str(valid_ids[:5])[:-1] + ", ...]"
+            else:
+                str_valid_ids = str(valid_ids)
+
             raise ValueError(
-                f"ID {sae_id} not found in release {release}. Valid IDs are {sae_directory[release].saes_map.keys()}"
+                f"ID {sae_id} not found in release {release}. Valid IDs are {str_valid_ids}."
+                + value_suffix
             )
         sae_info = sae_directory.get(release, None)
         hf_repo_id = sae_info.repo_id if sae_info is not None else release

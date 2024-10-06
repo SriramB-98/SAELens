@@ -131,7 +131,9 @@ class LanguageModelSAERunnerConfig:
     d_in: int = 512
     d_sae: Optional[int] = None
     b_dec_init_method: str = "geometric_median"
-    expansion_factor: int = 4
+    expansion_factor: Optional[int] = (
+        None  # defaults to 4 if d_sae and expansion_factor is None
+    )
     activation_fn: str = "relu"  # relu, tanh-relu, topk
     activation_fn_kwargs: dict[str, Any] = field(default_factory=dict)  # for topk
     normalize_sae_decoder: bool = True
@@ -228,7 +230,9 @@ class LanguageModelSAERunnerConfig:
     checkpoint_path: str = "checkpoints"
     verbose: bool = True
     model_kwargs: dict[str, Any] = field(default_factory=dict)
-    model_from_pretrained_kwargs: dict[str, Any] = field(default_factory=dict)
+    model_from_pretrained_kwargs: dict[str, Any] = field(
+        default_factory=lambda: {"center_writing_weights": False}
+    )
     sae_lens_version: str = field(default_factory=lambda: __version__)
     sae_lens_training_version: str = field(default_factory=lambda: __version__)
 
@@ -248,7 +252,13 @@ class LanguageModelSAERunnerConfig:
                 self.hook_head_index,
             )
 
-        if not isinstance(self.expansion_factor, list):
+        if self.d_sae is not None and self.expansion_factor is not None:
+            raise ValueError("You can't set both d_sae and expansion_factor.")
+
+        if self.d_sae is None and self.expansion_factor is None:
+            self.expansion_factor = 4
+
+        if self.d_sae is None and self.expansion_factor is not None:
             self.d_sae = self.d_in * self.expansion_factor
         self.tokens_per_buffer = (
             self.train_batch_size_tokens * self.context_size * self.n_batches_in_buffer
@@ -379,6 +389,7 @@ class LanguageModelSAERunnerConfig:
             "sae_lens_training_version": self.sae_lens_training_version,
             "normalize_activations": self.normalize_activations,
             "activation_fn_kwargs": self.activation_fn_kwargs,
+            "model_from_pretrained_kwargs": self.model_from_pretrained_kwargs,
         }
 
     def get_training_sae_cfg_dict(self) -> dict[str, Any]:

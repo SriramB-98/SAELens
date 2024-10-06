@@ -6,6 +6,9 @@ gpt2-small-res-jb:
     model: https://huggingface.co/gpt2
     dashboards: https://www.neuronpedia.org/gpt2sm-res-jb
     publication: https://www.lesswrong.com/posts/f9EgfLSurAiqRJySD/open-source-sparse-autoencoders-for-all-residual-stream
+  config_overrides:
+    model_from_pretrained_kwargs:
+      center_writing_weights: true
   saes:
   - id: blocks.0.hook_resid_pre
     path: blocks.0.hook_resid_pre
@@ -149,6 +152,8 @@ gpt2-small-mlp-tm:
   conversion_func: null
   config_overrides:
     dataset_path: Skylion007/openwebtext
+    model_from_pretrained_kwargs:
+      center_writing_weights: true
   saes:
   - id: blocks.0.hook_mlp_out
     path: sae_group_gpt2_blocks.0.hook_mlp_out_24576:v1
@@ -217,6 +222,9 @@ gpt2-small-res-jb-feature-splitting:
     model: https://huggingface.co/gpt2
     dashboards: https://www.neuronpedia.org/gpt2sm-rfs-jb
   conversion_func: null
+  config_overrides:
+    model_from_pretrained_kwargs:
+      center_writing_weights: true
   saes:
   - id: blocks.8.hook_resid_pre_768
     path: blocks.8.hook_resid_pre_768
@@ -468,28 +476,40 @@ gpt2-small-resid-mid-v5-32k:
   saes:
   - id: blocks.0.hook_resid_mid
     path: v5_32k_layer_0
+    neuronpedia: gpt2-small/0-res_mid_32k-oai
   - id: blocks.1.hook_resid_mid
     path: v5_32k_layer_1
+    neuronpedia: gpt2-small/1-res_mid_32k-oai
   - id: blocks.2.hook_resid_mid
     path: v5_32k_layer_2
+    neuronpedia: gpt2-small/2-res_mid_32k-oai
   - id: blocks.3.hook_resid_mid
     path: v5_32k_layer_3
+    neuronpedia: gpt2-small/3-res_mid_32k-oai
   - id: blocks.4.hook_resid_mid
     path: v5_32k_layer_4
+    neuronpedia: gpt2-small/4-res_mid_32k-oai
   - id: blocks.5.hook_resid_mid
     path: v5_32k_layer_5
+    neuronpedia: gpt2-small/5-res_mid_32k-oai
   - id: blocks.6.hook_resid_mid
     path: v5_32k_layer_6
+    neuronpedia: gpt2-small/6-res_mid_32k-oai
   - id: blocks.7.hook_resid_mid
     path: v5_32k_layer_7
+    neuronpedia: gpt2-small/7-res_mid_32k-oai
   - id: blocks.8.hook_resid_mid
     path: v5_32k_layer_8
+    neuronpedia: gpt2-small/8-res_mid_32k-oai
   - id: blocks.9.hook_resid_mid
     path: v5_32k_layer_9
+    neuronpedia: gpt2-small/9-res_mid_32k-oai
   - id: blocks.10.hook_resid_mid
     path: v5_32k_layer_10
+    neuronpedia: gpt2-small/10-res_mid_32k-oai
   - id: blocks.11.hook_resid_mid
     path: v5_32k_layer_11
+    neuronpedia: gpt2-small/11-res_mid_32k-oai
 gpt2-small-resid-mid-v5-128k:
   repo_id: jbloom/GPT2-Small-OAI-v5-128k-resid-mid-SAEs
   model: gpt2-small
@@ -499,28 +519,40 @@ gpt2-small-resid-mid-v5-128k:
   saes:
   - id: blocks.0.hook_resid_mid
     path: v5_128k_layer_0
+    neuronpedia: gpt2-small/0-res_mid_128k-oai
   - id: blocks.1.hook_resid_mid
     path: v5_128k_layer_1
+    neuronpedia: gpt2-small/1-res_mid_128k-oai
   - id: blocks.2.hook_resid_mid
     path: v5_128k_layer_2
+    neuronpedia: gpt2-small/2-res_mid_128k-oai
   - id: blocks.3.hook_resid_mid
     path: v5_128k_layer_3
+    neuronpedia: gpt2-small/3-res_mid_128k-oai
   - id: blocks.4.hook_resid_mid
     path: v5_128k_layer_4
+    neuronpedia: gpt2-small/4-res_mid_128k-oai
   - id: blocks.5.hook_resid_mid
     path: v5_128k_layer_5
+    neuronpedia: gpt2-small/5-res_mid_128k-oai
   - id: blocks.6.hook_resid_mid
     path: v5_128k_layer_6
+    neuronpedia: gpt2-small/6-res_mid_128k-oai
   - id: blocks.7.hook_resid_mid
     path: v5_128k_layer_7
+    neuronpedia: gpt2-small/7-res_mid_128k-oai
   - id: blocks.8.hook_resid_mid
     path: v5_128k_layer_8
+    neuronpedia: gpt2-small/8-res_mid_128k-oai
   - id: blocks.9.hook_resid_mid
     path: v5_128k_layer_9
+    neuronpedia: gpt2-small/9-res_mid_128k-oai
   - id: blocks.10.hook_resid_mid
     path: v5_128k_layer_10
+    neuronpedia: gpt2-small/10-res_mid_128k-oai
   - id: blocks.11.hook_resid_mid
     path: v5_128k_layer_11
+    neuronpedia: gpt2-small/11-res_mid_128k-oai
 gpt2-small-mlp-out-v5-32k:
   repo_id: jbloom/GPT2-Small-OAI-v5-32k-mlp-out-SAEs
   model: gpt2-small
@@ -530,40 +562,40 @@ gpt2-small-mlp-out-v5-32k:
   saes:
   - id: blocks.0.hook_mlp_out
     path: v5_32k_layer_0
-    neuronpedia: gpt2-small/0-res_mlp_32k-oai
+    neuronpedia: gpt2-small/0-mlp_32k-oai
   - id: blocks.1.hook_mlp_out
     path: v5_32k_layer_1
-    neuronpedia: gpt2-small/1-res_mlp_32k-oai
+    neuronpedia: gpt2-small/1-mlp_32k-oai
   - id: blocks.2.hook_mlp_out
     path: v5_32k_layer_2
-    neuronpedia: gpt2-small/2-res_mlp_32k-oai
+    neuronpedia: gpt2-small/2-mlp_32k-oai
   - id: blocks.3.hook_mlp_out
     path: v5_32k_layer_3
-    neuronpedia: gpt2-small/3-res_mlp_32k-oai
+    neuronpedia: gpt2-small/3-mlp_32k-oai
   - id: blocks.4.hook_mlp_out
     path: v5_32k_layer_4
-    neuronpedia: gpt2-small/4-res_mlp_32k-oai
+    neuronpedia: gpt2-small/4-mlp_32k-oai
   - id: blocks.5.hook_mlp_out
     path: v5_32k_layer_5
-    neuronpedia: gpt2-small/5-res_mlp_32k-oai
+    neuronpedia: gpt2-small/5-mlp_32k-oai
   - id: blocks.6.hook_mlp_out
     path: v5_32k_layer_6
-    neuronpedia: gpt2-small/6-res_mlp_32k-oai
+    neuronpedia: gpt2-small/6-mlp_32k-oai
   - id: blocks.7.hook_mlp_out
     path: v5_32k_layer_7
-    neuronpedia: gpt2-small/7-res_mlp_32k-oai
+    neuronpedia: gpt2-small/7-mlp_32k-oai
   - id: blocks.8.hook_mlp_out
     path: v5_32k_layer_8
-    neuronpedia: gpt2-small/8-res_mlp_32k-oai
+    neuronpedia: gpt2-small/8-mlp_32k-oai
   - id: blocks.9.hook_mlp_out
     path: v5_32k_layer_9
-    neuronpedia: gpt2-small/9-res_mlp_32k-oai
+    neuronpedia: gpt2-small/9-mlp_32k-oai
   - id: blocks.10.hook_mlp_out
     path: v5_32k_layer_10
-    neuronpedia: gpt2-small/10-res_mlp_32k-oai
+    neuronpedia: gpt2-small/10-mlp_32k-oai
   - id: blocks.11.hook_mlp_out
     path: v5_32k_layer_11
-    neuronpedia: gpt2-small/11-res_mlp_32k-oai
+    neuronpedia: gpt2-small/11-mlp_32k-oai
 gpt2-small-mlp-out-v5-128k:
   repo_id: jbloom/GPT2-Small-OAI-v5-128k-mlp-out-SAEs
   model: gpt2-small
@@ -573,40 +605,40 @@ gpt2-small-mlp-out-v5-128k:
   saes:
   - id: blocks.0.hook_mlp_out
     path: v5_128k_layer_0
-    neuronpedia: gpt2-small/0-res_mlp_128k-oai
+    neuronpedia: gpt2-small/0-mlp_128k-oai
   - id: blocks.1.hook_mlp_out
     path: v5_128k_layer_1
-    neuronpedia: gpt2-small/1-res_mlp_128k-oai
+    neuronpedia: gpt2-small/1-mlp_128k-oai
   - id: blocks.2.hook_mlp_out
     path: v5_128k_layer_2
-    neuronpedia: gpt2-small/2-res_mlp_128k-oai
+    neuronpedia: gpt2-small/2-mlp_128k-oai
   - id: blocks.3.hook_mlp_out
     path: v5_128k_layer_3
-    neuronpedia: gpt2-small/3-res_mlp_128k-oai
+    neuronpedia: gpt2-small/3-mlp_128k-oai
   - id: blocks.4.hook_mlp_out
     path: v5_128k_layer_4
-    neuronpedia: gpt2-small/4-res_mlp_128k-oai
+    neuronpedia: gpt2-small/4-mlp_128k-oai
   - id: blocks.5.hook_mlp_out
     path: v5_128k_layer_5
-    neuronpedia: gpt2-small/5-res_mlp_128k-oai
+    neuronpedia: gpt2-small/5-mlp_128k-oai
   - id: blocks.6.hook_mlp_out
     path: v5_128k_layer_6
-    neuronpedia: gpt2-small/6-res_mlp_128k-oai
+    neuronpedia: gpt2-small/6-mlp_128k-oai
   - id: blocks.7.hook_mlp_out
     path: v5_128k_layer_7
-    neuronpedia: gpt2-small/7-res_mlp_128k-oai
+    neuronpedia: gpt2-small/7-mlp_128k-oai
   - id: blocks.8.hook_mlp_out
     path: v5_128k_layer_8
-    neuronpedia: gpt2-small/8-res_mlp_128k-oai
+    neuronpedia: gpt2-small/8-mlp_128k-oai
   - id: blocks.9.hook_mlp_out
     path: v5_128k_layer_9
-    neuronpedia: gpt2-small/9-res_mlp_128k-oai
+    neuronpedia: gpt2-small/9-mlp_128k-oai
   - id: blocks.10.hook_mlp_out
     path: v5_128k_layer_10
-    neuronpedia: gpt2-small/10-res_mlp_128k-oai
+    neuronpedia: gpt2-small/10-mlp_128k-oai
   - id: blocks.11.hook_mlp_out
     path: v5_128k_layer_11
-    neuronpedia: gpt2-small/11-res_mlp_128k-oai
+    neuronpedia: gpt2-small/11-mlp_128k-oai
 gpt2-small-attn-out-v5-32k:
   repo_id: jbloom/GPT2-Small-OAI-v5-32k-attn-out-SAEs
   model: gpt2-small
@@ -616,40 +648,40 @@ gpt2-small-attn-out-v5-32k:
   saes:
   - id: blocks.0.hook_attn_out
     path: v5_32k_layer_0
-    neuronpedia: gpt2-small/0-res_att_32k-oai
+    neuronpedia: gpt2-small/0-att_32k-oai
   - id: blocks.1.hook_attn_out
     path: v5_32k_layer_1
-    neuronpedia: gpt2-small/1-res_att_32k-oai
+    neuronpedia: gpt2-small/1-att_32k-oai
   - id: blocks.2.hook_attn_out
     path: v5_32k_layer_2
-    neuronpedia: gpt2-small/2-res_att_32k-oai
+    neuronpedia: gpt2-small/2-att_32k-oai
   - id: blocks.3.hook_attn_out
     path: v5_32k_layer_3
-    neuronpedia: gpt2-small/3-res_att_32k-oai
+    neuronpedia: gpt2-small/3-att_32k-oai
   - id: blocks.4.hook_attn_out
     path: v5_32k_layer_4
-    neuronpedia: gpt2-small/4-res_att_32k-oai
+    neuronpedia: gpt2-small/4-att_32k-oai
   - id: blocks.5.hook_attn_out
     path: v5_32k_layer_5
-    neuronpedia: gpt2-small/5-res_att_32k-oai
+    neuronpedia: gpt2-small/5-att_32k-oai
   - id: blocks.6.hook_attn_out
     path: v5_32k_layer_6
-    neuronpedia: gpt2-small/6-res_att_32k-oai
+    neuronpedia: gpt2-small/6-att_32k-oai
   - id: blocks.7.hook_attn_out
     path: v5_32k_layer_7
-    neuronpedia: gpt2-small/7-res_att_32k-oai
+    neuronpedia: gpt2-small/7-att_32k-oai
   - id: blocks.8.hook_attn_out
     path: v5_32k_layer_8
-    neuronpedia: gpt2-small/8-res_att_32k-oai
+    neuronpedia: gpt2-small/8-att_32k-oai
   - id: blocks.9.hook_attn_out
     path: v5_32k_layer_9
-    neuronpedia: gpt2-small/9-res_att_32k-oai
+    neuronpedia: gpt2-small/9-att_32k-oai
   - id: blocks.10.hook_attn_out
     path: v5_32k_layer_10
-    neuronpedia: gpt2-small/10-res_att_32k-oai
+    neuronpedia: gpt2-small/10-att_32k-oai
   - id: blocks.11.hook_attn_out
     path: v5_32k_layer_11
-    neuronpedia: gpt2-small/11-res_att_32k-oai
+    neuronpedia: gpt2-small/11-att_32k-oai
 gpt2-small-attn-out-v5-128k:
   repo_id: jbloom/GPT2-Small-OAI-v5-128k-attn-out-SAEs
   model: gpt2-small
@@ -659,45 +691,53 @@ gpt2-small-attn-out-v5-128k:
   saes:
   - id: blocks.0.hook_attn_out
     path: v5_128k_layer_0
-    neuronpedia: gpt2-small/0-res_att_128k-oai
+    neuronpedia: gpt2-small/0-att_128k-oai
   - id: blocks.1.hook_attn_out
     path: v5_128k_layer_1
-    neuronpedia: gpt2-small/1-res_att_128k-oai
+    neuronpedia: gpt2-small/1-att_128k-oai
   - id: blocks.2.hook_attn_out
     path: v5_128k_layer_2
-    neuronpedia: gpt2-small/2-res_att_128k-oai
+    neuronpedia: gpt2-small/2-att_128k-oai
   - id: blocks.3.hook_attn_out
     path: v5_128k_layer_3
-    neuronpedia: gpt2-small/3-res_att_128k-oai
+    neuronpedia: gpt2-small/3-att_128k-oai
   - id: blocks.4.hook_attn_out
     path: v5_128k_layer_4
-    neuronpedia: gpt2-small/4-res_att_128k-oai
+    neuronpedia: gpt2-small/4-att_128k-oai
   - id: blocks.5.hook_attn_out
     path: v5_128k_layer_5
-    neuronpedia: gpt2-small/5-res_att_128k-oai
+    neuronpedia: gpt2-small/5-att_128k-oai
   - id: blocks.6.hook_attn_out
     path: v5_128k_layer_6
-    neuronpedia: gpt2-small/6-res_att_128k-oai
+    neuronpedia: gpt2-small/6-att_128k-oai
   - id: blocks.7.hook_attn_out
     path: v5_128k_layer_7
-    neuronpedia: gpt2-small/7-res_att_128k-oai
+    neuronpedia: gpt2-small/7-att_128k-oai
   - id: blocks.8.hook_attn_out
     path: v5_128k_layer_8
-    neuronpedia: gpt2-small/8-res_att_128k-oai
+    neuronpedia: gpt2-small/8-att_128k-oai
   - id: blocks.9.hook_attn_out
     path: v5_128k_layer_9
-    neuronpedia: gpt2-small/9-res_att_128k-oai
+    neuronpedia: gpt2-small/9-att_128k-oai
   - id: blocks.10.hook_attn_out
     path: v5_128k_layer_10
-    neuronpedia: gpt2-small/10-res_att_128k-oai
+    neuronpedia: gpt2-small/10-att_128k-oai
   - id: blocks.11.hook_attn_out
     path: v5_128k_layer_11
-    neuronpedia: gpt2-small/11-res_att_128k-oai
+    neuronpedia: gpt2-small/11-att_128k-oai
 gemma-scope-2b-pt-res:
   repo_id: google/gemma-scope-2b-pt-res
   model: gemma-2-2b
   conversion_func: gemma_2
   saes:
+  - id: embedding/width_4k/average_l0_6
+    path: embedding/width_4k/average_l0_6
+  - id: embedding/width_4k/average_l0_44
+    path: embedding/width_4k/average_l0_44
+  - id: embedding/width_4k/average_l0_21
+    path: embedding/width_4k/average_l0_21
+  - id: embedding/width_4k/average_l0_111
+    path: embedding/width_4k/average_l0_111
   - id: layer_0/width_16k/average_l0_105
     path: layer_0/width_16k/average_l0_105
     l0: 105
@@ -881,9 +921,6 @@ gemma-scope-2b-pt-res:
   - id: layer_11/width_16k/average_l0_41
     path: layer_11/width_16k/average_l0_41
     l0: 41
-  - id: layer_11/width_16k/average_l0_79
-    path: layer_11/width_16k/average_l0_79
-    l0: 79
   - id: layer_11/width_16k/average_l0_80
     path: layer_11/width_16k/average_l0_80
     l0: 80
@@ -3699,6 +3736,14 @@ gemma-scope-9b-pt-res:
   model: gemma-2-9b
   conversion_func: gemma_2
   saes:
+  - id: embedding/width_4k/average_l0_14
+    path: embedding/width_4k/average_l0_14
+  - id: embedding/width_4k/average_l0_22
+    path: embedding/width_4k/average_l0_22
+  - id: embedding/width_4k/average_l0_7
+    path: embedding/width_4k/average_l0_7
+  - id: embedding/width_4k/average_l0_80
+    path: embedding/width_4k/average_l0_80
   - id: layer_0/width_131k/average_l0_11
     path: layer_0/width_131k/average_l0_11
     l0: 11
@@ -5630,6 +5675,34 @@ gemma-scope-9b-pt-res-canonical:
   - id: layer_41/width_131k/canonical
     path: layer_41/width_131k/average_l0_84
     neuronpedia: gemma-2-9b/41-gemmascope-res-131k
+  - id: layer_9/width_1m/canonical
+    path: layer_9/width_1m/average_l0_122
+    neuronpedia: gemma-2-9b/9-gemmascope-res-1m
+    l0: 122
+  - id: layer_20/width_1m/canonical
+    path: layer_20/width_1m/average_l0_101
+    neuronpedia: gemma-2-9b/20-gemmascope-res-1m
+    l0: 101
+  - id: layer_31/width_1m/canonical
+    path: layer_31/width_1m/average_l0_77
+    neuronpedia: gemma-2-9b/31-gemmascope-res-1m
+    l0: 77
+  - id: layer_20/width_262k/canonical
+    path: layer_20/width_262k/average_l0_64
+    neuronpedia: gemma-2-9b/20-gemmascope-res-262k
+    l0: 64
+  - id: layer_20/width_32k/canonical
+    path: layer_20/width_32k/average_l0_57
+    neuronpedia: gemma-2-9b/20-gemmascope-res-32k
+    l0: 57
+  - id: layer_20/width_524k/canonical
+    path: layer_20/width_524k/average_l0_78
+    neuronpedia: gemma-2-9b/20-gemmascope-res-524k
+    l0: 78
+  - id: layer_20/width_65k/canonical
+    path: layer_20/width_65k/average_l0_55
+    neuronpedia: gemma-2-9b/20-gemmascope-res-65k
+    l0: 55
 gemma-scope-9b-pt-att:
   repo_id: google/gemma-scope-9b-pt-att
   model: gemma-2-9b
@@ -7249,31 +7322,31 @@ gemma-scope-9b-pt-att-canonical:
     path: layer_1/width_131k/average_l0_116
     neuronpedia: gemma-2-9b/1-gemmascope-att-131k
   - id: layer_2/width_131k/canonical
-    path: layer_2/width_131k/average_l0_11
+    path: layer_2/width_131k/average_l0_135
     neuronpedia: gemma-2-9b/2-gemmascope-att-131k
   - id: layer_3/width_131k/canonical
-    path: layer_3/width_131k/average_l0_10
+    path: layer_3/width_131k/average_l0_119
     neuronpedia: gemma-2-9b/3-gemmascope-att-131k
   - id: layer_4/width_131k/canonical
-    path: layer_4/width_131k/average_l0_12
+    path: layer_4/width_131k/average_l0_75
     neuronpedia: gemma-2-9b/4-gemmascope-att-131k
   - id: layer_5/width_131k/canonical
-    path: layer_5/width_131k/average_l0_12
+    path: layer_5/width_131k/average_l0_78
     neuronpedia: gemma-2-9b/5-gemmascope-att-131k
   - id: layer_6/width_131k/canonical
-    path: layer_6/width_131k/average_l0_148
+    path: layer_6/width_131k/average_l0_73
     neuronpedia: gemma-2-9b/6-gemmascope-att-131k
   - id: layer_7/width_131k/canonical
     path: layer_7/width_131k/average_l0_106
     neuronpedia: gemma-2-9b/7-gemmascope-att-131k
   - id: layer_8/width_131k/canonical
-    path: layer_8/width_131k/average_l0_16
+    path: layer_8/width_131k/average_l0_98
     neuronpedia: gemma-2-9b/8-gemmascope-att-131k
   - id: layer_9/width_131k/canonical
     path: layer_9/width_131k/average_l0_111
     neuronpedia: gemma-2-9b/9-gemmascope-att-131k
   - id: layer_10/width_131k/canonical
-    path: layer_10/width_131k/average_l0_16
+    path: layer_10/width_131k/average_l0_97
     neuronpedia: gemma-2-9b/10-gemmascope-att-131k
   - id: layer_11/width_131k/canonical
     path: layer_11/width_131k/average_l0_104
@@ -7291,28 +7364,28 @@ gemma-scope-9b-pt-att-canonical:
     path: layer_15/width_131k/average_l0_130
     neuronpedia: gemma-2-9b/15-gemmascope-att-131k
   - id: layer_16/width_131k/canonical
-    path: layer_16/width_131k/average_l0_140
+    path: layer_16/width_131k/average_l0_71
     neuronpedia: gemma-2-9b/16-gemmascope-att-131k
   - id: layer_17/width_131k/canonical
-    path: layer_17/width_131k/average_l0_191
+    path: layer_17/width_131k/average_l0_90
     neuronpedia: gemma-2-9b/17-gemmascope-att-131k
   - id: layer_18/width_131k/canonical
-    path: layer_18/width_131k/average_l0_133
+    path: layer_18/width_131k/average_l0_69
     neuronpedia: gemma-2-9b/18-gemmascope-att-131k
   - id: layer_19/width_131k/canonical
-    path: layer_19/width_131k/average_l0_152
+    path: layer_19/width_131k/average_l0_71
     neuronpedia: gemma-2-9b/19-gemmascope-att-131k
   - id: layer_20/width_131k/canonical
     path: layer_20/width_131k/average_l0_125
     neuronpedia: gemma-2-9b/20-gemmascope-att-131k
   - id: layer_21/width_131k/canonical
-    path: layer_21/width_131k/average_l0_150
+    path: layer_21/width_131k/average_l0_71
     neuronpedia: gemma-2-9b/21-gemmascope-att-131k
   - id: layer_22/width_131k/canonical
     path: layer_22/width_131k/average_l0_115
     neuronpedia: gemma-2-9b/22-gemmascope-att-131k
   - id: layer_23/width_131k/canonical
-    path: layer_23/width_131k/average_l0_134
+    path: layer_23/width_131k/average_l0_66
     neuronpedia: gemma-2-9b/23-gemmascope-att-131k
   - id: layer_24/width_131k/canonical
     path: layer_24/width_131k/average_l0_130
@@ -7345,7 +7418,7 @@ gemma-scope-9b-pt-att-canonical:
     path: layer_33/width_131k/average_l0_128
     neuronpedia: gemma-2-9b/33-gemmascope-att-131k
   - id: layer_34/width_131k/canonical
-    path: layer_34/width_131k/average_l0_15
+    path: layer_34/width_131k/average_l0_63
     neuronpedia: gemma-2-9b/34-gemmascope-att-131k
   - id: layer_35/width_131k/canonical
     path: layer_35/width_131k/average_l0_124
@@ -7363,10 +7436,10 @@ gemma-scope-9b-pt-att-canonical:
     path: layer_39/width_131k/average_l0_120
     neuronpedia: gemma-2-9b/39-gemmascope-att-131k
   - id: layer_40/width_131k/canonical
-    path: layer_40/width_131k/average_l0_144
+    path: layer_40/width_131k/average_l0_64
     neuronpedia: gemma-2-9b/40-gemmascope-att-131k
   - id: layer_41/width_131k/canonical
-    path: layer_41/width_131k/average_l0_13
+    path: layer_41/width_131k/average_l0_92
     neuronpedia: gemma-2-9b/41-gemmascope-att-131k
 gemma-scope-9b-pt-mlp:
   repo_id: google/gemma-scope-9b-pt-mlp
@@ -8981,130 +9054,130 @@ gemma-scope-9b-pt-mlp-canonical:
     path: layer_41/width_16k/average_l0_126
     neuronpedia: gemma-2-9b/41-gemmascope-mlp-16k
   - id: layer_0/width_131k/canonical
-    path: layer_0/width_131k/average_l0_11
+    path: layer_0/width_131k/average_l0_30
     neuronpedia: gemma-2-9b/0-gemmascope-mlp-131k
   - id: layer_1/width_131k/canonical
     path: layer_1/width_131k/average_l0_106
     neuronpedia: gemma-2-9b/1-gemmascope-mlp-131k
   - id: layer_2/width_131k/canonical
-    path: layer_2/width_131k/average_l0_12
+    path: layer_2/width_131k/average_l0_61
     neuronpedia: gemma-2-9b/2-gemmascope-mlp-131k
   - id: layer_3/width_131k/canonical
     path: layer_3/width_131k/average_l0_109
     neuronpedia: gemma-2-9b/3-gemmascope-mlp-131k
   - id: layer_4/width_131k/canonical
-    path: layer_4/width_131k/average_l0_14
+    path: layer_4/width_131k/average_l0_84
     neuronpedia: gemma-2-9b/4-gemmascope-mlp-131k
   - id: layer_5/width_131k/canonical
-    path: layer_5/width_131k/average_l0_12
+    path: layer_5/width_131k/average_l0_131
     neuronpedia: gemma-2-9b/5-gemmascope-mlp-131k
   - id: layer_6/width_131k/canonical
-    path: layer_6/width_131k/average_l0_12
+    path: layer_6/width_131k/average_l0_72
     neuronpedia: gemma-2-9b/6-gemmascope-mlp-131k
   - id: layer_7/width_131k/canonical
-    path: layer_7/width_131k/average_l0_13
+    path: layer_7/width_131k/average_l0_75
     neuronpedia: gemma-2-9b/7-gemmascope-mlp-131k
   - id: layer_8/width_131k/canonical
-    path: layer_8/width_131k/average_l0_15
+    path: layer_8/width_131k/average_l0_89
     neuronpedia: gemma-2-9b/8-gemmascope-mlp-131k
   - id: layer_9/width_131k/canonical
     path: layer_9/width_131k/average_l0_129
     neuronpedia: gemma-2-9b/9-gemmascope-mlp-131k
   - id: layer_10/width_131k/canonical
-    path: layer_10/width_131k/average_l0_12
+    path: layer_10/width_131k/average_l0_83
     neuronpedia: gemma-2-9b/10-gemmascope-mlp-131k
   - id: layer_11/width_131k/canonical
     path: layer_11/width_131k/average_l0_120
     neuronpedia: gemma-2-9b/11-gemmascope-mlp-131k
   - id: layer_12/width_131k/canonical
-    path: layer_12/width_131k/average_l0_159
+    path: layer_12/width_131k/average_l0_77
     neuronpedia: gemma-2-9b/12-gemmascope-mlp-131k
   - id: layer_13/width_131k/canonical
-    path: layer_13/width_131k/average_l0_160
+    path: layer_13/width_131k/average_l0_75
     neuronpedia: gemma-2-9b/13-gemmascope-mlp-131k
   - id: layer_14/width_131k/canonical
-    path: layer_14/width_131k/average_l0_174
+    path: layer_14/width_131k/average_l0_80
     neuronpedia: gemma-2-9b/14-gemmascope-mlp-131k
   - id: layer_15/width_131k/canonical
-    path: layer_15/width_131k/average_l0_194
+    path: layer_15/width_131k/average_l0_89
     neuronpedia: gemma-2-9b/15-gemmascope-mlp-131k
   - id: layer_16/width_131k/canonical
-    path: layer_16/width_131k/average_l0_175
+    path: layer_16/width_131k/average_l0_81
     neuronpedia: gemma-2-9b/16-gemmascope-mlp-131k
   - id: layer_17/width_131k/canonical
-    path: layer_17/width_131k/average_l0_207
+    path: layer_17/width_131k/average_l0_91
     neuronpedia: gemma-2-9b/17-gemmascope-mlp-131k
   - id: layer_18/width_131k/canonical
-    path: layer_18/width_131k/average_l0_174
+    path: layer_18/width_131k/average_l0_82
     neuronpedia: gemma-2-9b/18-gemmascope-mlp-131k
   - id: layer_19/width_131k/canonical
-    path: layer_19/width_131k/average_l0_189
+    path: layer_19/width_131k/average_l0_85
     neuronpedia: gemma-2-9b/19-gemmascope-mlp-131k
   - id: layer_20/width_131k/canonical
-    path: layer_20/width_131k/average_l0_20
+    path: layer_20/width_131k/average_l0_93
     neuronpedia: gemma-2-9b/20-gemmascope-mlp-131k
   - id: layer_21/width_131k/canonical
-    path: layer_21/width_131k/average_l0_16
+    path: layer_21/width_131k/average_l0_79
     neuronpedia: gemma-2-9b/21-gemmascope-mlp-131k
   - id: layer_22/width_131k/canonical
-    path: layer_22/width_131k/average_l0_172
+    path: layer_22/width_131k/average_l0_77
     neuronpedia: gemma-2-9b/22-gemmascope-mlp-131k
   - id: layer_23/width_131k/canonical
-    path: layer_23/width_131k/average_l0_146
+    path: layer_23/width_131k/average_l0_67
     neuronpedia: gemma-2-9b/23-gemmascope-mlp-131k
   - id: layer_24/width_131k/canonical
-    path: layer_24/width_131k/average_l0_147
+    path: layer_24/width_131k/average_l0_67
     neuronpedia: gemma-2-9b/24-gemmascope-mlp-131k
   - id: layer_25/width_131k/canonical
-    path: layer_25/width_131k/average_l0_139
+    path: layer_25/width_131k/average_l0_65
     neuronpedia: gemma-2-9b/25-gemmascope-mlp-131k
   - id: layer_26/width_131k/canonical
     path: layer_26/width_131k/average_l0_110
     neuronpedia: gemma-2-9b/26-gemmascope-mlp-131k
   - id: layer_27/width_131k/canonical
-    path: layer_27/width_131k/average_l0_14
+    path: layer_27/width_131k/average_l0_99
     neuronpedia: gemma-2-9b/27-gemmascope-mlp-131k
   - id: layer_28/width_131k/canonical
-    path: layer_28/width_131k/average_l0_15
+    path: layer_28/width_131k/average_l0_91
     neuronpedia: gemma-2-9b/28-gemmascope-mlp-131k
   - id: layer_29/width_131k/canonical
-    path: layer_29/width_131k/average_l0_15
+    path: layer_29/width_131k/average_l0_87
     neuronpedia: gemma-2-9b/29-gemmascope-mlp-131k
   - id: layer_30/width_131k/canonical
-    path: layer_30/width_131k/average_l0_14
+    path: layer_30/width_131k/average_l0_89
     neuronpedia: gemma-2-9b/30-gemmascope-mlp-131k
   - id: layer_31/width_131k/canonical
-    path: layer_31/width_131k/average_l0_12
+    path: layer_31/width_131k/average_l0_77
     neuronpedia: gemma-2-9b/31-gemmascope-mlp-131k
   - id: layer_32/width_131k/canonical
-    path: layer_32/width_131k/average_l0_12
+    path: layer_32/width_131k/average_l0_76
     neuronpedia: gemma-2-9b/32-gemmascope-mlp-131k
   - id: layer_33/width_131k/canonical
-    path: layer_33/width_131k/average_l0_12
+    path: layer_33/width_131k/average_l0_83
     neuronpedia: gemma-2-9b/33-gemmascope-mlp-131k
   - id: layer_34/width_131k/canonical
-    path: layer_34/width_131k/average_l0_10
+    path: layer_34/width_131k/average_l0_82
     neuronpedia: gemma-2-9b/34-gemmascope-mlp-131k
   - id: layer_35/width_131k/canonical
-    path: layer_35/width_131k/average_l0_10
+    path: layer_35/width_131k/average_l0_80
     neuronpedia: gemma-2-9b/35-gemmascope-mlp-131k
   - id: layer_36/width_131k/canonical
-    path: layer_36/width_131k/average_l0_11
+    path: layer_36/width_131k/average_l0_81
     neuronpedia: gemma-2-9b/36-gemmascope-mlp-131k
   - id: layer_37/width_131k/canonical
-    path: layer_37/width_131k/average_l0_12
+    path: layer_37/width_131k/average_l0_90
     neuronpedia: gemma-2-9b/37-gemmascope-mlp-131k
   - id: layer_38/width_131k/canonical
-    path: layer_38/width_131k/average_l0_11
+    path: layer_38/width_131k/average_l0_79
     neuronpedia: gemma-2-9b/38-gemmascope-mlp-131k
   - id: layer_39/width_131k/canonical
-    path: layer_39/width_131k/average_l0_11
+    path: layer_39/width_131k/average_l0_75
     neuronpedia: gemma-2-9b/39-gemmascope-mlp-131k
   - id: layer_40/width_131k/canonical
-    path: layer_40/width_131k/average_l0_11
+    path: layer_40/width_131k/average_l0_125
     neuronpedia: gemma-2-9b/40-gemmascope-mlp-131k
   - id: layer_41/width_131k/canonical
-    path: layer_41/width_131k/average_l0_14
+    path: layer_41/width_131k/average_l0_99
     neuronpedia: gemma-2-9b/41-gemmascope-mlp-131k
 gemma-scope-9b-it-res:
   repo_id: google/gemma-scope-9b-it-res
@@ -9206,15 +9279,24 @@ gemma-scope-9b-it-res-canonical:
   model: gemma-2-9b-it
   conversion_func: gemma_2
   saes:
+  - id: layer_9/width_16k/canonical
+    path: layer_9/width_16k/average_l0_88
+    neuronpedia: gemma-2-9b-it/9-gemmascope-res-16k
+  - id: layer_20/width_16k/canonical
+    path: layer_20/width_16k/average_l0_91
+    neuronpedia: gemma-2-9b-it/20-gemmascope-res-16k
+  - id: layer_31/width_16k/canonical
+    path: layer_31/width_16k/average_l0_76
+    neuronpedia: gemma-2-9b-it/31-gemmascope-res-16k
   - id: layer_9/width_131k/canonical
     path: layer_9/width_131k/average_l0_121
-    neuronpedia: gemma-2-9b-it/9-gemmascope-it-res-131k
+    neuronpedia: gemma-2-9b-it/9-gemmascope-res-131k
   - id: layer_20/width_131k/canonical
     path: layer_20/width_131k/average_l0_81
-    neuronpedia: gemma-2-9b-it/20-gemmascope-it-res-131k
+    neuronpedia: gemma-2-9b-it/20-gemmascope-res-131k
   - id: layer_31/width_131k/canonical
     path: layer_31/width_131k/average_l0_109
-    neuronpedia: gemma-2-9b-it/31-gemmascope-it-res-131k
+    neuronpedia: gemma-2-9b-it/31-gemmascope-res-131k
 gemma-scope-27b-pt-res:
   repo_id: google/gemma-scope-27b-pt-res
   model: gemma-2-27b
@@ -9488,3 +9570,2125 @@ gpt2-small-res_scefr-ajt:
     - id: blocks.10.hook_resid_pre
       path: 10-res_scefr-ajt
       neuronpedia: gpt2-small/10-res_scefr-ajt
+sae_bench_gemma-2-2b_sweep_standard_ctx128_ef2_0824:
+  conversion_func: dictionary_learning_1
+  links:
+    model: https://huggingface.co/google/gemma-2-2b
+  model: gemma-2b
+  repo_id: canrager/lm_sae
+  saes:
+  - id: blocks.3.hook_resid_post__trainer_1_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_1_step_29292
+  - id: blocks.3.hook_resid_post__trainer_1_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_1_step_19528
+  - id: blocks.3.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_1_step_0
+  - id: blocks.3.hook_resid_post__trainer_0_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_0_step_9764
+  - id: blocks.3.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_0_step_4882
+  - id: blocks.3.hook_resid_post__trainer_0_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_0_step_29292
+  - id: blocks.3.hook_resid_post__trainer_0_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_0_step_19528
+  - id: blocks.3.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_0_step_0
+  - id: blocks.3.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3/trainer_5
+  - id: blocks.3.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3/trainer_4
+  - id: blocks.3.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3/trainer_3
+  - id: blocks.3.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3/trainer_2
+  - id: blocks.3.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3/trainer_1
+  - id: blocks.3.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3/trainer_0
+  - id: blocks.3.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_1_step_4882
+  - id: blocks.3.hook_resid_post__trainer_1_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_1_step_9764
+  - id: blocks.3.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_2_step_0
+  - id: blocks.3.hook_resid_post__trainer_2_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_2_step_29292
+  - id: blocks.3.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_3_step_0
+  - id: blocks.3.hook_resid_post__trainer_3_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_3_step_19528
+  - id: blocks.3.hook_resid_post__trainer_3_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_3_step_29292
+  - id: blocks.3.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_3_step_4882
+  - id: blocks.3.hook_resid_post__trainer_3_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_3_step_9764
+  - id: blocks.3.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_4_step_0
+  - id: blocks.3.hook_resid_post__trainer_4_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_4_step_19528
+  - id: blocks.3.hook_resid_post__trainer_4_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_4_step_29292
+  - id: blocks.3.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_4_step_4882
+  - id: blocks.3.hook_resid_post__trainer_4_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_4_step_9764
+  - id: blocks.3.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_5_step_0
+  - id: blocks.3.hook_resid_post__trainer_5_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_5_step_19528
+  - id: blocks.3.hook_resid_post__trainer_5_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_5_step_29292
+  - id: blocks.3.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_5_step_4882
+  - id: blocks.3.hook_resid_post__trainer_5_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_5_step_9764
+  - id: blocks.3.hook_resid_post__trainer_2_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_2_step_19528
+  - id: blocks.3.hook_resid_post__trainer_2_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_2_step_9764
+  - id: blocks.3.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_2_step_4882
+  - id: blocks.7.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_4_step_0
+  - id: blocks.7.hook_resid_post__trainer_4_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_4_step_19528
+  - id: blocks.7.hook_resid_post__trainer_4_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_4_step_29292
+  - id: blocks.7.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_4_step_4882
+  - id: blocks.7.hook_resid_post__trainer_4_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_4_step_9764
+  - id: blocks.7.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_5_step_0
+  - id: blocks.7.hook_resid_post__trainer_5_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_5_step_19528
+  - id: blocks.7.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_5_step_4882
+  - id: blocks.7.hook_resid_post__trainer_3_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_3_step_9764
+  - id: blocks.7.hook_resid_post__trainer_5_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_5_step_9764
+  - id: blocks.7.hook_resid_post__trainer_5_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_5_step_29292
+  - id: blocks.7.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_3_step_4882
+  - id: blocks.7.hook_resid_post__trainer_2_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_2_step_19528
+  - id: blocks.7.hook_resid_post__trainer_3_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_3_step_19528
+  - id: blocks.7.hook_resid_post__trainer_0_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_0_step_29292
+  - id: blocks.7.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_0_step_4882
+  - id: blocks.7.hook_resid_post__trainer_0_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_0_step_9764
+  - id: blocks.7.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_1_step_0
+  - id: blocks.7.hook_resid_post__trainer_1_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_1_step_19528
+  - id: blocks.7.hook_resid_post__trainer_3_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_3_step_29292
+  - id: blocks.7.hook_resid_post__trainer_1_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_1_step_29292
+  - id: blocks.7.hook_resid_post__trainer_1_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_1_step_9764
+  - id: blocks.7.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_2_step_0
+  - id: blocks.7.hook_resid_post__trainer_2_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_2_step_29292
+  - id: blocks.7.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_2_step_4882
+  - id: blocks.7.hook_resid_post__trainer_2_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_2_step_9764
+  - id: blocks.7.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_3_step_0
+  - id: blocks.7.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_1_step_4882
+  - id: blocks.7.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7/trainer_5
+  - id: blocks.7.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_0_step_0
+  - id: blocks.7.hook_resid_post__trainer_0_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_0_step_19528
+  - id: blocks.7.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7/trainer_4
+  - id: blocks.7.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7/trainer_3
+  - id: blocks.7.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7/trainer_2
+  - id: blocks.7.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7/trainer_1
+  - id: blocks.7.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_7/trainer_0
+  - id: blocks.11.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11/trainer_0
+  - id: blocks.11.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_4_step_4882
+  - id: blocks.11.hook_resid_post__trainer_4_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_4_step_29292
+  - id: blocks.11.hook_resid_post__trainer_4_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_4_step_19528
+  - id: blocks.11.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_4_step_0
+  - id: blocks.11.hook_resid_post__trainer_3_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_3_step_9764
+  - id: blocks.11.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_3_step_4882
+  - id: blocks.11.hook_resid_post__trainer_3_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_3_step_29292
+  - id: blocks.11.hook_resid_post__trainer_3_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_3_step_19528
+  - id: blocks.11.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_3_step_0
+  - id: blocks.11.hook_resid_post__trainer_2_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_2_step_9764
+  - id: blocks.11.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_2_step_4882
+  - id: blocks.11.hook_resid_post__trainer_2_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_2_step_29292
+  - id: blocks.11.hook_resid_post__trainer_2_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_2_step_19528
+  - id: blocks.11.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_2_step_0
+  - id: blocks.11.hook_resid_post__trainer_1_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_1_step_9764
+  - id: blocks.11.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_1_step_4882
+  - id: blocks.11.hook_resid_post__trainer_1_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_1_step_29292
+  - id: blocks.11.hook_resid_post__trainer_1_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_1_step_19528
+  - id: blocks.11.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_1_step_0
+  - id: blocks.11.hook_resid_post__trainer_0_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_0_step_9764
+  - id: blocks.11.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_0_step_4882
+  - id: blocks.11.hook_resid_post__trainer_0_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_0_step_29292
+  - id: blocks.11.hook_resid_post__trainer_0_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_0_step_19528
+  - id: blocks.11.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_0_step_0
+  - id: blocks.11.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11/trainer_5
+  - id: blocks.11.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11/trainer_4
+  - id: blocks.11.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11/trainer_3
+  - id: blocks.11.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11/trainer_2
+  - id: blocks.11.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11/trainer_1
+  - id: blocks.11.hook_resid_post__trainer_4_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_4_step_9764
+  - id: blocks.11.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_5_step_0
+  - id: blocks.11.hook_resid_post__trainer_5_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_5_step_29292
+  - id: blocks.11.hook_resid_post__trainer_5_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_5_step_9764
+  - id: blocks.11.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_5_step_4882
+  - id: blocks.11.hook_resid_post__trainer_5_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_5_step_19528
+  - id: blocks.15.hook_resid_post__trainer_2_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_2_step_19528
+  - id: blocks.15.hook_resid_post__trainer_5_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_5_step_9764
+  - id: blocks.15.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_5_step_4882
+  - id: blocks.15.hook_resid_post__trainer_5_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_5_step_29292
+  - id: blocks.15.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_5_step_0
+  - id: blocks.15.hook_resid_post__trainer_4_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_4_step_9764
+  - id: blocks.15.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_4_step_4882
+  - id: blocks.15.hook_resid_post__trainer_4_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_4_step_19528
+  - id: blocks.15.hook_resid_post__trainer_2_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_2_step_29292
+  - id: blocks.15.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_4_step_0
+  - id: blocks.15.hook_resid_post__trainer_3_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_3_step_9764
+  - id: blocks.15.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_3_step_4882
+  - id: blocks.15.hook_resid_post__trainer_3_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_3_step_29292
+  - id: blocks.15.hook_resid_post__trainer_3_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_3_step_19528
+  - id: blocks.15.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_3_step_0
+  - id: blocks.15.hook_resid_post__trainer_2_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_2_step_9764
+  - id: blocks.15.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_2_step_4882
+  - id: blocks.15.hook_resid_post__trainer_1_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_1_step_9764
+  - id: blocks.15.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_2_step_0
+  - id: blocks.15.hook_resid_post__trainer_4_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_4_step_29292
+  - id: blocks.15.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_1_step_4882
+  - id: blocks.15.hook_resid_post__trainer_1_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_1_step_29292
+  - id: blocks.15.hook_resid_post__trainer_5_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_5_step_19528
+  - id: blocks.15.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_1_step_0
+  - id: blocks.15.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15/trainer_0
+  - id: blocks.15.hook_resid_post__trainer_1_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_1_step_19528
+  - id: blocks.15.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15/trainer_1
+  - id: blocks.15.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15/trainer_2
+  - id: blocks.15.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15/trainer_3
+  - id: blocks.15.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15/trainer_4
+  - id: blocks.15.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15/trainer_5
+  - id: blocks.15.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_0_step_0
+  - id: blocks.15.hook_resid_post__trainer_0_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_0_step_19528
+  - id: blocks.15.hook_resid_post__trainer_0_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_0_step_29292
+  - id: blocks.15.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_0_step_4882
+  - id: blocks.15.hook_resid_post__trainer_0_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_0_step_9764
+  - id: blocks.19.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_2_step_0
+  - id: blocks.19.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19/trainer_0
+  - id: blocks.19.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19/trainer_1
+  - id: blocks.19.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19/trainer_2
+  - id: blocks.19.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19/trainer_3
+  - id: blocks.19.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19/trainer_4
+  - id: blocks.19.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19/trainer_5
+  - id: blocks.19.hook_resid_post__trainer_0_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_0_step_19528
+  - id: blocks.19.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_2_step_4882
+  - id: blocks.19.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_0_step_0
+  - id: blocks.19.hook_resid_post__trainer_2_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_2_step_9764
+  - id: blocks.19.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_5_step_4882
+  - id: blocks.19.hook_resid_post__trainer_5_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_5_step_9764
+  - id: blocks.19.hook_resid_post__trainer_5_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_5_step_29292
+  - id: blocks.19.hook_resid_post__trainer_5_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_5_step_19528
+  - id: blocks.19.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_5_step_0
+  - id: blocks.19.hook_resid_post__trainer_4_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_4_step_9764
+  - id: blocks.19.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_4_step_4882
+  - id: blocks.19.hook_resid_post__trainer_4_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_4_step_29292
+  - id: blocks.19.hook_resid_post__trainer_4_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_4_step_19528
+  - id: blocks.19.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_4_step_0
+  - id: blocks.19.hook_resid_post__trainer_3_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_3_step_9764
+  - id: blocks.19.hook_resid_post__trainer_3_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_3_step_19528
+  - id: blocks.19.hook_resid_post__trainer_3_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_3_step_29292
+  - id: blocks.19.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_3_step_4882
+  - id: blocks.19.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_3_step_0
+  - id: blocks.19.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_0_step_4882
+  - id: blocks.19.hook_resid_post__trainer_0_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_0_step_9764
+  - id: blocks.19.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_1_step_0
+  - id: blocks.19.hook_resid_post__trainer_1_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_1_step_19528
+  - id: blocks.19.hook_resid_post__trainer_1_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_1_step_29292
+  - id: blocks.19.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_1_step_4882
+  - id: blocks.19.hook_resid_post__trainer_1_step_9764
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_1_step_9764
+  - id: blocks.19.hook_resid_post__trainer_0_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_0_step_29292
+  - id: blocks.19.hook_resid_post__trainer_2_step_19528
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_2_step_19528
+  - id: blocks.19.hook_resid_post__trainer_2_step_29292
+    path: gemma-2-2b_sweep_standard_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_2_step_29292
+sae_bench_gemma-2-2b_sweep_standard_ctx128_ef8_0824:
+  conversion_func: dictionary_learning_1
+  links:
+    model: https://huggingface.co/google/gemma-2-2b
+  model: gemma-2b
+  repo_id: canrager/lm_sae
+  saes:
+  - id: blocks.3.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_4882
+  - id: blocks.3.hook_resid_post__trainer_5_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_488
+  - id: blocks.3.hook_resid_post__trainer_5_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_48
+  - id: blocks.3.hook_resid_post__trainer_5_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_15440
+  - id: blocks.3.hook_resid_post__trainer_5_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_1544
+  - id: blocks.3.hook_resid_post__trainer_5_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_154
+  - id: blocks.3.hook_resid_post__trainer_1_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_488
+  - id: blocks.3.hook_resid_post__trainer_1_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_48
+  - id: blocks.3.hook_resid_post__trainer_1_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_15440
+  - id: blocks.3.hook_resid_post__trainer_1_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_1544
+  - id: blocks.3.hook_resid_post__trainer_1_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_154
+  - id: blocks.3.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_0
+  - id: blocks.3.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_4882
+  - id: blocks.3.hook_resid_post__trainer_0_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_488
+  - id: blocks.3.hook_resid_post__trainer_0_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_48
+  - id: blocks.3.hook_resid_post__trainer_0_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_15440
+  - id: blocks.3.hook_resid_post__trainer_0_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_1544
+  - id: blocks.3.hook_resid_post__trainer_0_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_154
+  - id: blocks.3.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_0
+  - id: blocks.3.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3/trainer_5
+  - id: blocks.3.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3/trainer_4
+  - id: blocks.3.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3/trainer_3
+  - id: blocks.3.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3/trainer_2
+  - id: blocks.3.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3/trainer_1
+  - id: blocks.3.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3/trainer_0
+  - id: blocks.3.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_4882
+  - id: blocks.3.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_0
+  - id: blocks.3.hook_resid_post__trainer_2_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_1544
+  - id: blocks.3.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_0
+  - id: blocks.3.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_4882
+  - id: blocks.3.hook_resid_post__trainer_4_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_488
+  - id: blocks.3.hook_resid_post__trainer_4_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_48
+  - id: blocks.3.hook_resid_post__trainer_4_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_15440
+  - id: blocks.3.hook_resid_post__trainer_4_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_1544
+  - id: blocks.3.hook_resid_post__trainer_4_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_154
+  - id: blocks.3.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_0
+  - id: blocks.3.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_4882
+  - id: blocks.3.hook_resid_post__trainer_3_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_488
+  - id: blocks.3.hook_resid_post__trainer_3_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_48
+  - id: blocks.3.hook_resid_post__trainer_3_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_15440
+  - id: blocks.3.hook_resid_post__trainer_3_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_1544
+  - id: blocks.3.hook_resid_post__trainer_3_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_154
+  - id: blocks.3.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_0
+  - id: blocks.3.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_4882
+  - id: blocks.3.hook_resid_post__trainer_2_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_488
+  - id: blocks.3.hook_resid_post__trainer_2_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_48
+  - id: blocks.3.hook_resid_post__trainer_2_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_15440
+  - id: blocks.3.hook_resid_post__trainer_2_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_154
+  - id: blocks.7.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7/trainer_0
+  - id: blocks.7.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7/trainer_1
+  - id: blocks.7.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7/trainer_2
+  - id: blocks.7.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7/trainer_3
+  - id: blocks.7.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7/trainer_4
+  - id: blocks.7.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7/trainer_5
+  - id: blocks.7.hook_resid_post__trainer_0_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_154
+  - id: blocks.7.hook_resid_post__trainer_0_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_1544
+  - id: blocks.7.hook_resid_post__trainer_0_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_15440
+  - id: blocks.7.hook_resid_post__trainer_0_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_48
+  - id: blocks.7.hook_resid_post__trainer_0_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_488
+  - id: blocks.7.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_4882
+  - id: blocks.7.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_0
+  - id: blocks.7.hook_resid_post__trainer_1_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_154
+  - id: blocks.7.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_0
+  - id: blocks.7.hook_resid_post__trainer_1_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_1544
+  - id: blocks.7.hook_resid_post__trainer_1_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_15440
+  - id: blocks.7.hook_resid_post__trainer_1_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_48
+  - id: blocks.7.hook_resid_post__trainer_1_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_488
+  - id: blocks.7.hook_resid_post__trainer_5_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_154
+  - id: blocks.7.hook_resid_post__trainer_5_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_1544
+  - id: blocks.7.hook_resid_post__trainer_5_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_48
+  - id: blocks.7.hook_resid_post__trainer_5_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_488
+  - id: blocks.7.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_4882
+  - id: blocks.7.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_0
+  - id: blocks.7.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_4882
+  - id: blocks.7.hook_resid_post__trainer_4_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_48
+  - id: blocks.7.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_4882
+  - id: blocks.7.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_0
+  - id: blocks.7.hook_resid_post__trainer_2_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_154
+  - id: blocks.7.hook_resid_post__trainer_2_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_1544
+  - id: blocks.7.hook_resid_post__trainer_2_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_15440
+  - id: blocks.7.hook_resid_post__trainer_2_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_48
+  - id: blocks.7.hook_resid_post__trainer_2_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_488
+  - id: blocks.7.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_4882
+  - id: blocks.7.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_0
+  - id: blocks.7.hook_resid_post__trainer_3_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_154
+  - id: blocks.7.hook_resid_post__trainer_3_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_1544
+  - id: blocks.7.hook_resid_post__trainer_3_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_15440
+  - id: blocks.7.hook_resid_post__trainer_3_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_48
+  - id: blocks.7.hook_resid_post__trainer_3_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_488
+  - id: blocks.7.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_4882
+  - id: blocks.7.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_0
+  - id: blocks.7.hook_resid_post__trainer_4_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_154
+  - id: blocks.7.hook_resid_post__trainer_4_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_1544
+  - id: blocks.7.hook_resid_post__trainer_4_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_15440
+  - id: blocks.7.hook_resid_post__trainer_4_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_488
+  - id: blocks.7.hook_resid_post__trainer_5_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_15440
+  - id: blocks.11.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_4882
+  - id: blocks.11.hook_resid_post__trainer_5_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_488
+  - id: blocks.11.hook_resid_post__trainer_5_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_48
+  - id: blocks.11.hook_resid_post__trainer_5_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_15440
+  - id: blocks.11.hook_resid_post__trainer_5_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_1544
+  - id: blocks.11.hook_resid_post__trainer_5_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_154
+  - id: blocks.11.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_0
+  - id: blocks.11.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_4882
+  - id: blocks.11.hook_resid_post__trainer_4_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_488
+  - id: blocks.11.hook_resid_post__trainer_4_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_48
+  - id: blocks.11.hook_resid_post__trainer_4_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_15440
+  - id: blocks.11.hook_resid_post__trainer_4_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_1544
+  - id: blocks.11.hook_resid_post__trainer_4_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_154
+  - id: blocks.11.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_0
+  - id: blocks.11.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_4882
+  - id: blocks.11.hook_resid_post__trainer_3_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_488
+  - id: blocks.11.hook_resid_post__trainer_3_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_48
+  - id: blocks.11.hook_resid_post__trainer_3_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_15440
+  - id: blocks.11.hook_resid_post__trainer_3_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_1544
+  - id: blocks.11.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_0
+  - id: blocks.11.hook_resid_post__trainer_3_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_154
+  - id: blocks.11.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_4882
+  - id: blocks.11.hook_resid_post__trainer_2_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_488
+  - id: blocks.11.hook_resid_post__trainer_2_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_48
+  - id: blocks.11.hook_resid_post__trainer_2_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_15440
+  - id: blocks.11.hook_resid_post__trainer_2_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_1544
+  - id: blocks.11.hook_resid_post__trainer_2_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_154
+  - id: blocks.11.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_0
+  - id: blocks.11.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_4882
+  - id: blocks.11.hook_resid_post__trainer_1_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_488
+  - id: blocks.11.hook_resid_post__trainer_1_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_48
+  - id: blocks.11.hook_resid_post__trainer_1_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_15440
+  - id: blocks.11.hook_resid_post__trainer_1_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_1544
+  - id: blocks.11.hook_resid_post__trainer_1_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_154
+  - id: blocks.11.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_0
+  - id: blocks.11.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_4882
+  - id: blocks.11.hook_resid_post__trainer_0_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_488
+  - id: blocks.11.hook_resid_post__trainer_0_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_48
+  - id: blocks.11.hook_resid_post__trainer_0_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_15440
+  - id: blocks.11.hook_resid_post__trainer_0_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_1544
+  - id: blocks.11.hook_resid_post__trainer_0_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_154
+  - id: blocks.11.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_0
+  - id: blocks.11.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11/trainer_5
+  - id: blocks.11.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11/trainer_4
+  - id: blocks.11.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11/trainer_3
+  - id: blocks.11.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11/trainer_2
+  - id: blocks.11.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11/trainer_1
+  - id: blocks.11.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_11/trainer_0
+  - id: blocks.15.hook_resid_post__trainer_5_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_1544
+  - id: blocks.15.hook_resid_post__trainer_5_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_15440
+  - id: blocks.15.hook_resid_post__trainer_5_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_48
+  - id: blocks.15.hook_resid_post__trainer_5_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_488
+  - id: blocks.15.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_4882
+  - id: blocks.15.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15/trainer_1
+  - id: blocks.15.hook_resid_post__trainer_5_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_154
+  - id: blocks.15.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_0
+  - id: blocks.15.hook_resid_post__trainer_4_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_1544
+  - id: blocks.15.hook_resid_post__trainer_4_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_488
+  - id: blocks.15.hook_resid_post__trainer_2_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_48
+  - id: blocks.15.hook_resid_post__trainer_2_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_15440
+  - id: blocks.15.hook_resid_post__trainer_2_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_1544
+  - id: blocks.15.hook_resid_post__trainer_2_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_154
+  - id: blocks.15.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_0
+  - id: blocks.15.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_4882
+  - id: blocks.15.hook_resid_post__trainer_1_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_488
+  - id: blocks.15.hook_resid_post__trainer_1_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_48
+  - id: blocks.15.hook_resid_post__trainer_1_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_15440
+  - id: blocks.15.hook_resid_post__trainer_1_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_1544
+  - id: blocks.15.hook_resid_post__trainer_1_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_154
+  - id: blocks.15.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_0
+  - id: blocks.15.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_4882
+  - id: blocks.15.hook_resid_post__trainer_0_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_488
+  - id: blocks.15.hook_resid_post__trainer_0_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_48
+  - id: blocks.15.hook_resid_post__trainer_0_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_15440
+  - id: blocks.15.hook_resid_post__trainer_0_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_1544
+  - id: blocks.15.hook_resid_post__trainer_0_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_154
+  - id: blocks.15.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_0
+  - id: blocks.15.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15/trainer_5
+  - id: blocks.15.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15/trainer_4
+  - id: blocks.15.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15/trainer_3
+  - id: blocks.15.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15/trainer_2
+  - id: blocks.15.hook_resid_post__trainer_2_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_488
+  - id: blocks.15.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_4882
+  - id: blocks.15.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_4882
+  - id: blocks.15.hook_resid_post__trainer_3_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_154
+  - id: blocks.15.hook_resid_post__trainer_4_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_48
+  - id: blocks.15.hook_resid_post__trainer_4_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_15440
+  - id: blocks.15.hook_resid_post__trainer_4_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_154
+  - id: blocks.15.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_0
+  - id: blocks.15.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_4882
+  - id: blocks.15.hook_resid_post__trainer_3_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_488
+  - id: blocks.15.hook_resid_post__trainer_3_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_48
+  - id: blocks.15.hook_resid_post__trainer_3_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_15440
+  - id: blocks.15.hook_resid_post__trainer_3_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_1544
+  - id: blocks.15.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_0
+  - id: blocks.15.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_15/trainer_0
+  - id: blocks.19.hook_resid_post__trainer_5_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_154
+  - id: blocks.19.hook_resid_post__trainer_5_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_1544
+  - id: blocks.19.hook_resid_post__trainer_5_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_15440
+  - id: blocks.19.hook_resid_post__trainer_5_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_48
+  - id: blocks.19.hook_resid_post__trainer_5_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_488
+  - id: blocks.19.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_4882
+  - id: blocks.19.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_0
+  - id: blocks.19.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_4882
+  - id: blocks.19.hook_resid_post__trainer_4_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_488
+  - id: blocks.19.hook_resid_post__trainer_4_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_48
+  - id: blocks.19.hook_resid_post__trainer_2_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_1544
+  - id: blocks.19.hook_resid_post__trainer_2_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_15440
+  - id: blocks.19.hook_resid_post__trainer_2_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_48
+  - id: blocks.19.hook_resid_post__trainer_2_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_488
+  - id: blocks.19.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_4882
+  - id: blocks.19.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_0
+  - id: blocks.19.hook_resid_post__trainer_3_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_154
+  - id: blocks.19.hook_resid_post__trainer_3_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_1544
+  - id: blocks.19.hook_resid_post__trainer_3_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_48
+  - id: blocks.19.hook_resid_post__trainer_3_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_488
+  - id: blocks.19.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_4882
+  - id: blocks.19.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_0
+  - id: blocks.19.hook_resid_post__trainer_4_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_154
+  - id: blocks.19.hook_resid_post__trainer_4_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_1544
+  - id: blocks.19.hook_resid_post__trainer_4_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_15440
+  - id: blocks.19.hook_resid_post__trainer_3_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_15440
+  - id: blocks.19.hook_resid_post__trainer_2_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_154
+  - id: blocks.19.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_0
+  - id: blocks.19.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_4882
+  - id: blocks.19.hook_resid_post__trainer_1_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_488
+  - id: blocks.19.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19/trainer_2
+  - id: blocks.19.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19/trainer_3
+  - id: blocks.19.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19/trainer_4
+  - id: blocks.19.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19/trainer_5
+  - id: blocks.19.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_0
+  - id: blocks.19.hook_resid_post__trainer_0_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_154
+  - id: blocks.19.hook_resid_post__trainer_0_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_1544
+  - id: blocks.19.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19/trainer_1
+  - id: blocks.19.hook_resid_post__trainer_0_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_15440
+  - id: blocks.19.hook_resid_post__trainer_0_step_488
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_488
+  - id: blocks.19.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_4882
+  - id: blocks.19.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_0
+  - id: blocks.19.hook_resid_post__trainer_1_step_154
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_154
+  - id: blocks.19.hook_resid_post__trainer_1_step_1544
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_1544
+  - id: blocks.19.hook_resid_post__trainer_1_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_48
+  - id: blocks.19.hook_resid_post__trainer_0_step_48
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_48
+  - id: blocks.19.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19/trainer_0
+  - id: blocks.19.hook_resid_post__trainer_1_step_15440
+    path: gemma-2-2b_sweep_standard_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_15440
+sae_bench_gemma-2-2b_sweep_topk_ctx128_ef2_0824:
+  conversion_func: dictionary_learning_1
+  links:
+    model: https://huggingface.co/google/gemma-2-2b
+  model: gemma-2b
+  repo_id: canrager/lm_sae
+  saes:
+  - id: blocks.3.hook_resid_post__trainer_2_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_2_step_9764
+  - id: blocks.3.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_3_step_0
+  - id: blocks.3.hook_resid_post__trainer_3_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_3_step_19528
+  - id: blocks.3.hook_resid_post__trainer_3_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_3_step_29292
+  - id: blocks.3.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_3_step_4882
+  - id: blocks.3.hook_resid_post__trainer_3_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_3_step_9764
+  - id: blocks.3.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_4_step_0
+  - id: blocks.3.hook_resid_post__trainer_4_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_4_step_19528
+  - id: blocks.3.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_2_step_4882
+  - id: blocks.3.hook_resid_post__trainer_4_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_4_step_29292
+  - id: blocks.3.hook_resid_post__trainer_4_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_4_step_9764
+  - id: blocks.3.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_5_step_0
+  - id: blocks.3.hook_resid_post__trainer_5_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_5_step_19528
+  - id: blocks.3.hook_resid_post__trainer_5_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_5_step_29292
+  - id: blocks.3.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_5_step_4882
+  - id: blocks.3.hook_resid_post__trainer_5_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_5_step_9764
+  - id: blocks.3.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_4_step_4882
+  - id: blocks.3.hook_resid_post__trainer_2_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_2_step_29292
+  - id: blocks.3.hook_resid_post__trainer_2_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_2_step_19528
+  - id: blocks.3.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_2_step_0
+  - id: blocks.3.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3/trainer_0
+  - id: blocks.3.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3/trainer_1
+  - id: blocks.3.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3/trainer_2
+  - id: blocks.3.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3/trainer_3
+  - id: blocks.3.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3/trainer_4
+  - id: blocks.3.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3/trainer_5
+  - id: blocks.3.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_0_step_0
+  - id: blocks.3.hook_resid_post__trainer_0_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_0_step_19528
+  - id: blocks.3.hook_resid_post__trainer_0_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_0_step_29292
+  - id: blocks.3.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_0_step_4882
+  - id: blocks.3.hook_resid_post__trainer_0_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_0_step_9764
+  - id: blocks.3.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_1_step_0
+  - id: blocks.3.hook_resid_post__trainer_1_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_1_step_19528
+  - id: blocks.3.hook_resid_post__trainer_1_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_1_step_29292
+  - id: blocks.3.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_1_step_4882
+  - id: blocks.3.hook_resid_post__trainer_1_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_3_checkpoints/trainer_1_step_9764
+  - id: blocks.7.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7/trainer_0
+  - id: blocks.7.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7/trainer_1
+  - id: blocks.7.hook_resid_post__trainer_4_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_4_step_9764
+  - id: blocks.7.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7/trainer_3
+  - id: blocks.7.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_4_step_4882
+  - id: blocks.7.hook_resid_post__trainer_4_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_4_step_29292
+  - id: blocks.7.hook_resid_post__trainer_4_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_4_step_19528
+  - id: blocks.7.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_4_step_0
+  - id: blocks.7.hook_resid_post__trainer_3_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_3_step_9764
+  - id: blocks.7.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_3_step_4882
+  - id: blocks.7.hook_resid_post__trainer_3_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_3_step_29292
+  - id: blocks.7.hook_resid_post__trainer_3_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_3_step_19528
+  - id: blocks.7.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_3_step_0
+  - id: blocks.7.hook_resid_post__trainer_2_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_2_step_9764
+  - id: blocks.7.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_2_step_4882
+  - id: blocks.7.hook_resid_post__trainer_2_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_2_step_29292
+  - id: blocks.7.hook_resid_post__trainer_5_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_5_step_19528
+  - id: blocks.7.hook_resid_post__trainer_2_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_2_step_19528
+  - id: blocks.7.hook_resid_post__trainer_5_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_5_step_29292
+  - id: blocks.7.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_5_step_4882
+  - id: blocks.7.hook_resid_post__trainer_5_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_5_step_9764
+  - id: blocks.7.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_5_step_0
+  - id: blocks.7.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_2_step_0
+  - id: blocks.7.hook_resid_post__trainer_1_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_1_step_9764
+  - id: blocks.7.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_1_step_4882
+  - id: blocks.7.hook_resid_post__trainer_1_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_1_step_29292
+  - id: blocks.7.hook_resid_post__trainer_1_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_1_step_19528
+  - id: blocks.7.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_1_step_0
+  - id: blocks.7.hook_resid_post__trainer_0_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_0_step_9764
+  - id: blocks.7.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_0_step_4882
+  - id: blocks.7.hook_resid_post__trainer_0_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_0_step_29292
+  - id: blocks.7.hook_resid_post__trainer_0_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_0_step_19528
+  - id: blocks.7.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7_checkpoints/trainer_0_step_0
+  - id: blocks.7.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7/trainer_5
+  - id: blocks.7.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7/trainer_4
+  - id: blocks.7.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_7/trainer_2
+  - id: blocks.11.hook_resid_post__trainer_0_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_0_step_9764
+  - id: blocks.11.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_0_step_4882
+  - id: blocks.11.hook_resid_post__trainer_0_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_0_step_29292
+  - id: blocks.11.hook_resid_post__trainer_0_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_0_step_19528
+  - id: blocks.11.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_0_step_0
+  - id: blocks.11.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11/trainer_5
+  - id: blocks.11.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11/trainer_4
+  - id: blocks.11.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11/trainer_3
+  - id: blocks.11.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11/trainer_2
+  - id: blocks.11.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11/trainer_1
+  - id: blocks.11.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11/trainer_0
+  - id: blocks.11.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_1_step_0
+  - id: blocks.11.hook_resid_post__trainer_1_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_1_step_19528
+  - id: blocks.11.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_1_step_4882
+  - id: blocks.11.hook_resid_post__trainer_5_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_5_step_9764
+  - id: blocks.11.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_5_step_4882
+  - id: blocks.11.hook_resid_post__trainer_5_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_5_step_29292
+  - id: blocks.11.hook_resid_post__trainer_5_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_5_step_19528
+  - id: blocks.11.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_5_step_0
+  - id: blocks.11.hook_resid_post__trainer_4_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_4_step_9764
+  - id: blocks.11.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_4_step_4882
+  - id: blocks.11.hook_resid_post__trainer_4_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_4_step_29292
+  - id: blocks.11.hook_resid_post__trainer_4_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_4_step_19528
+  - id: blocks.11.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_4_step_0
+  - id: blocks.11.hook_resid_post__trainer_3_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_3_step_9764
+  - id: blocks.11.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_3_step_4882
+  - id: blocks.11.hook_resid_post__trainer_3_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_3_step_29292
+  - id: blocks.11.hook_resid_post__trainer_3_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_3_step_19528
+  - id: blocks.11.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_3_step_0
+  - id: blocks.11.hook_resid_post__trainer_2_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_2_step_9764
+  - id: blocks.11.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_2_step_4882
+  - id: blocks.11.hook_resid_post__trainer_2_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_2_step_29292
+  - id: blocks.11.hook_resid_post__trainer_2_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_2_step_19528
+  - id: blocks.11.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_2_step_0
+  - id: blocks.11.hook_resid_post__trainer_1_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_1_step_9764
+  - id: blocks.11.hook_resid_post__trainer_1_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_11_checkpoints/trainer_1_step_29292
+  - id: blocks.15.hook_resid_post__trainer_5_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_5_step_9764
+  - id: blocks.15.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_5_step_4882
+  - id: blocks.15.hook_resid_post__trainer_5_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_5_step_29292
+  - id: blocks.15.hook_resid_post__trainer_5_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_5_step_19528
+  - id: blocks.15.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_5_step_0
+  - id: blocks.15.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_4_step_4882
+  - id: blocks.15.hook_resid_post__trainer_4_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_4_step_29292
+  - id: blocks.15.hook_resid_post__trainer_4_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_4_step_19528
+  - id: blocks.15.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_4_step_0
+  - id: blocks.15.hook_resid_post__trainer_3_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_3_step_9764
+  - id: blocks.15.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_3_step_4882
+  - id: blocks.15.hook_resid_post__trainer_3_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_3_step_29292
+  - id: blocks.15.hook_resid_post__trainer_3_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_3_step_19528
+  - id: blocks.15.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_3_step_0
+  - id: blocks.15.hook_resid_post__trainer_2_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_2_step_9764
+  - id: blocks.15.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_2_step_4882
+  - id: blocks.15.hook_resid_post__trainer_4_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_4_step_9764
+  - id: blocks.15.hook_resid_post__trainer_2_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_2_step_19528
+  - id: blocks.15.hook_resid_post__trainer_0_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_0_step_9764
+  - id: blocks.15.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_0_step_4882
+  - id: blocks.15.hook_resid_post__trainer_0_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_0_step_29292
+  - id: blocks.15.hook_resid_post__trainer_0_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_0_step_19528
+  - id: blocks.15.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_0_step_0
+  - id: blocks.15.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15/trainer_5
+  - id: blocks.15.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15/trainer_4
+  - id: blocks.15.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15/trainer_3
+  - id: blocks.15.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15/trainer_2
+  - id: blocks.15.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15/trainer_1
+  - id: blocks.15.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15/trainer_0
+  - id: blocks.15.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_1_step_0
+  - id: blocks.15.hook_resid_post__trainer_2_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_2_step_29292
+  - id: blocks.15.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_2_step_0
+  - id: blocks.15.hook_resid_post__trainer_1_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_1_step_9764
+  - id: blocks.15.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_1_step_4882
+  - id: blocks.15.hook_resid_post__trainer_1_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_1_step_29292
+  - id: blocks.15.hook_resid_post__trainer_1_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_15_checkpoints/trainer_1_step_19528
+  - id: blocks.19.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19/trainer_0
+  - id: blocks.19.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_3_step_0
+  - id: blocks.19.hook_resid_post__trainer_3_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_3_step_19528
+  - id: blocks.19.hook_resid_post__trainer_3_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_3_step_29292
+  - id: blocks.19.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_3_step_4882
+  - id: blocks.19.hook_resid_post__trainer_3_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_3_step_9764
+  - id: blocks.19.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_4_step_0
+  - id: blocks.19.hook_resid_post__trainer_4_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_4_step_19528
+  - id: blocks.19.hook_resid_post__trainer_4_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_4_step_29292
+  - id: blocks.19.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_4_step_4882
+  - id: blocks.19.hook_resid_post__trainer_4_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_4_step_9764
+  - id: blocks.19.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_5_step_0
+  - id: blocks.19.hook_resid_post__trainer_5_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_5_step_19528
+  - id: blocks.19.hook_resid_post__trainer_5_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_5_step_29292
+  - id: blocks.19.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_5_step_4882
+  - id: blocks.19.hook_resid_post__trainer_5_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_5_step_9764
+  - id: blocks.19.hook_resid_post__trainer_2_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_2_step_9764
+  - id: blocks.19.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_2_step_4882
+  - id: blocks.19.hook_resid_post__trainer_2_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_2_step_29292
+  - id: blocks.19.hook_resid_post__trainer_2_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_2_step_19528
+  - id: blocks.19.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19/trainer_1
+  - id: blocks.19.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19/trainer_2
+  - id: blocks.19.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19/trainer_3
+  - id: blocks.19.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19/trainer_4
+  - id: blocks.19.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19/trainer_5
+  - id: blocks.19.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_0_step_0
+  - id: blocks.19.hook_resid_post__trainer_0_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_0_step_19528
+  - id: blocks.19.hook_resid_post__trainer_0_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_0_step_29292
+  - id: blocks.19.hook_resid_post__trainer_0_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_0_step_9764
+  - id: blocks.19.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_1_step_0
+  - id: blocks.19.hook_resid_post__trainer_1_step_19528
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_1_step_19528
+  - id: blocks.19.hook_resid_post__trainer_1_step_29292
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_1_step_29292
+  - id: blocks.19.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_1_step_4882
+  - id: blocks.19.hook_resid_post__trainer_1_step_9764
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_1_step_9764
+  - id: blocks.19.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_2_step_0
+  - id: blocks.19.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef2_0824/resid_post_layer_19_checkpoints/trainer_0_step_4882
+sae_bench_gemma-2-2b_sweep_topk_ctx128_ef8_0824:
+  conversion_func: dictionary_learning_1
+  links:
+    model: https://huggingface.co/google/gemma-2-2b
+  model: gemma-2b
+  repo_id: canrager/lm_sae
+  saes:
+  - id: blocks.3.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3/trainer_3
+  - id: blocks.3.hook_resid_post__trainer_1_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_48
+  - id: blocks.3.hook_resid_post__trainer_1_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_15440
+  - id: blocks.3.hook_resid_post__trainer_1_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_1544
+  - id: blocks.3.hook_resid_post__trainer_1_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_154
+  - id: blocks.3.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_0
+  - id: blocks.3.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_4882
+  - id: blocks.3.hook_resid_post__trainer_0_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_488
+  - id: blocks.3.hook_resid_post__trainer_0_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_48
+  - id: blocks.3.hook_resid_post__trainer_1_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_488
+  - id: blocks.3.hook_resid_post__trainer_0_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_15440
+  - id: blocks.3.hook_resid_post__trainer_0_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_154
+  - id: blocks.3.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_0
+  - id: blocks.3.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3/trainer_5
+  - id: blocks.3.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3/trainer_4
+  - id: blocks.3.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3/trainer_2
+  - id: blocks.3.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3/trainer_1
+  - id: blocks.3.hook_resid_post__trainer_0_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_0_step_1544
+  - id: blocks.3.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_1_step_4882
+  - id: blocks.3.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_0
+  - id: blocks.3.hook_resid_post__trainer_2_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_154
+  - id: blocks.3.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_4882
+  - id: blocks.3.hook_resid_post__trainer_4_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_488
+  - id: blocks.3.hook_resid_post__trainer_4_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_48
+  - id: blocks.3.hook_resid_post__trainer_4_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_15440
+  - id: blocks.3.hook_resid_post__trainer_4_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_1544
+  - id: blocks.3.hook_resid_post__trainer_4_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_154
+  - id: blocks.3.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_4_step_0
+  - id: blocks.3.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_4882
+  - id: blocks.3.hook_resid_post__trainer_3_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_488
+  - id: blocks.3.hook_resid_post__trainer_3_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_48
+  - id: blocks.3.hook_resid_post__trainer_3_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_15440
+  - id: blocks.3.hook_resid_post__trainer_3_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_1544
+  - id: blocks.3.hook_resid_post__trainer_3_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_154
+  - id: blocks.3.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_3_step_0
+  - id: blocks.3.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_4882
+  - id: blocks.3.hook_resid_post__trainer_2_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_488
+  - id: blocks.3.hook_resid_post__trainer_2_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_48
+  - id: blocks.3.hook_resid_post__trainer_2_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_15440
+  - id: blocks.3.hook_resid_post__trainer_2_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_2_step_1544
+  - id: blocks.3.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_0
+  - id: blocks.3.hook_resid_post__trainer_5_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_154
+  - id: blocks.3.hook_resid_post__trainer_5_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_1544
+  - id: blocks.3.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3/trainer_0
+  - id: blocks.3.hook_resid_post__trainer_5_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_488
+  - id: blocks.3.hook_resid_post__trainer_5_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_48
+  - id: blocks.3.hook_resid_post__trainer_5_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_15440
+  - id: blocks.3.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_3_checkpoints/trainer_5_step_4882
+  - id: blocks.7.hook_resid_post__trainer_0_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_154
+  - id: blocks.7.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_0
+  - id: blocks.7.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7/trainer_5
+  - id: blocks.7.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7/trainer_4
+  - id: blocks.7.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7/trainer_3
+  - id: blocks.7.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7/trainer_1
+  - id: blocks.7.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7/trainer_2
+  - id: blocks.7.hook_resid_post__trainer_0_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_1544
+  - id: blocks.7.hook_resid_post__trainer_0_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_15440
+  - id: blocks.7.hook_resid_post__trainer_5_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_154
+  - id: blocks.7.hook_resid_post__trainer_0_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_488
+  - id: blocks.7.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_4882
+  - id: blocks.7.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_0
+  - id: blocks.7.hook_resid_post__trainer_1_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_154
+  - id: blocks.7.hook_resid_post__trainer_1_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_1544
+  - id: blocks.7.hook_resid_post__trainer_1_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_15440
+  - id: blocks.7.hook_resid_post__trainer_1_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_48
+  - id: blocks.7.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_0
+  - id: blocks.7.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_4882
+  - id: blocks.7.hook_resid_post__trainer_2_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_48
+  - id: blocks.7.hook_resid_post__trainer_2_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_15440
+  - id: blocks.7.hook_resid_post__trainer_2_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_1544
+  - id: blocks.7.hook_resid_post__trainer_2_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_154
+  - id: blocks.7.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_0
+  - id: blocks.7.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_4882
+  - id: blocks.7.hook_resid_post__trainer_1_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_1_step_488
+  - id: blocks.7.hook_resid_post__trainer_2_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_2_step_488
+  - id: blocks.7.hook_resid_post__trainer_0_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_0_step_48
+  - id: blocks.7.hook_resid_post__trainer_3_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_154
+  - id: blocks.7.hook_resid_post__trainer_3_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_15440
+  - id: blocks.7.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_4882
+  - id: blocks.7.hook_resid_post__trainer_5_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_488
+  - id: blocks.7.hook_resid_post__trainer_5_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_48
+  - id: blocks.7.hook_resid_post__trainer_5_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_15440
+  - id: blocks.7.hook_resid_post__trainer_5_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_1544
+  - id: blocks.7.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_5_step_0
+  - id: blocks.7.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_4882
+  - id: blocks.7.hook_resid_post__trainer_3_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_1544
+  - id: blocks.7.hook_resid_post__trainer_4_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_488
+  - id: blocks.7.hook_resid_post__trainer_4_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_15440
+  - id: blocks.7.hook_resid_post__trainer_4_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_1544
+  - id: blocks.7.hook_resid_post__trainer_4_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_154
+  - id: blocks.7.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_0
+  - id: blocks.7.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_4882
+  - id: blocks.7.hook_resid_post__trainer_3_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_488
+  - id: blocks.7.hook_resid_post__trainer_3_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_3_step_48
+  - id: blocks.7.hook_resid_post__trainer_4_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7_checkpoints/trainer_4_step_48
+  - id: blocks.7.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_7/trainer_0
+  - id: blocks.11.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_4882
+  - id: blocks.11.hook_resid_post__trainer_5_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_48
+  - id: blocks.11.hook_resid_post__trainer_5_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_488
+  - id: blocks.11.hook_resid_post__trainer_0_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_1544
+  - id: blocks.11.hook_resid_post__trainer_0_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_154
+  - id: blocks.11.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_0
+  - id: blocks.11.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11/trainer_5
+  - id: blocks.11.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11/trainer_3
+  - id: blocks.11.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11/trainer_2
+  - id: blocks.11.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11/trainer_1
+  - id: blocks.11.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11/trainer_0
+  - id: blocks.11.hook_resid_post__trainer_0_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_15440
+  - id: blocks.11.hook_resid_post__trainer_0_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_48
+  - id: blocks.11.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11/trainer_4
+  - id: blocks.11.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_4882
+  - id: blocks.11.hook_resid_post__trainer_4_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_48
+  - id: blocks.11.hook_resid_post__trainer_4_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_15440
+  - id: blocks.11.hook_resid_post__trainer_4_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_1544
+  - id: blocks.11.hook_resid_post__trainer_4_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_154
+  - id: blocks.11.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_0
+  - id: blocks.11.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_4882
+  - id: blocks.11.hook_resid_post__trainer_3_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_48
+  - id: blocks.11.hook_resid_post__trainer_3_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_15440
+  - id: blocks.11.hook_resid_post__trainer_4_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_488
+  - id: blocks.11.hook_resid_post__trainer_3_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_1544
+  - id: blocks.11.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_0
+  - id: blocks.11.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_4882
+  - id: blocks.11.hook_resid_post__trainer_2_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_488
+  - id: blocks.11.hook_resid_post__trainer_2_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_48
+  - id: blocks.11.hook_resid_post__trainer_0_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_0_step_488
+  - id: blocks.11.hook_resid_post__trainer_2_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_15440
+  - id: blocks.11.hook_resid_post__trainer_2_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_1544
+  - id: blocks.11.hook_resid_post__trainer_2_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_154
+  - id: blocks.11.hook_resid_post__trainer_3_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_154
+  - id: blocks.11.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_4_step_4882
+  - id: blocks.11.hook_resid_post__trainer_3_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_3_step_488
+  - id: blocks.11.hook_resid_post__trainer_5_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_154
+  - id: blocks.11.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_0
+  - id: blocks.11.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_0
+  - id: blocks.11.hook_resid_post__trainer_1_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_1544
+  - id: blocks.11.hook_resid_post__trainer_1_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_15440
+  - id: blocks.11.hook_resid_post__trainer_1_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_48
+  - id: blocks.11.hook_resid_post__trainer_1_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_488
+  - id: blocks.11.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_4882
+  - id: blocks.11.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_2_step_0
+  - id: blocks.11.hook_resid_post__trainer_1_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_1_step_154
+  - id: blocks.11.hook_resid_post__trainer_5_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_15440
+  - id: blocks.11.hook_resid_post__trainer_5_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_11_checkpoints/trainer_5_step_1544
+  - id: blocks.15.hook_resid_post__trainer_4_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_154
+  - id: blocks.15.hook_resid_post__trainer_4_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_1544
+  - id: blocks.15.hook_resid_post__trainer_4_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_15440
+  - id: blocks.15.hook_resid_post__trainer_4_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_48
+  - id: blocks.15.hook_resid_post__trainer_4_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_488
+  - id: blocks.15.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_4882
+  - id: blocks.15.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_0
+  - id: blocks.15.hook_resid_post__trainer_5_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_154
+  - id: blocks.15.hook_resid_post__trainer_5_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_1544
+  - id: blocks.15.hook_resid_post__trainer_5_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_15440
+  - id: blocks.15.hook_resid_post__trainer_5_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_48
+  - id: blocks.15.hook_resid_post__trainer_5_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_488
+  - id: blocks.15.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_5_step_4882
+  - id: blocks.15.hook_resid_post__trainer_3_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_154
+  - id: blocks.15.hook_resid_post__trainer_3_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_1544
+  - id: blocks.15.hook_resid_post__trainer_3_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_15440
+  - id: blocks.15.hook_resid_post__trainer_3_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_48
+  - id: blocks.15.hook_resid_post__trainer_3_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_488
+  - id: blocks.15.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_4882
+  - id: blocks.15.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_4_step_0
+  - id: blocks.15.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_3_step_0
+  - id: blocks.15.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_4882
+  - id: blocks.15.hook_resid_post__trainer_2_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_488
+  - id: blocks.15.hook_resid_post__trainer_2_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_48
+  - id: blocks.15.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15/trainer_0
+  - id: blocks.15.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15/trainer_1
+  - id: blocks.15.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15/trainer_2
+  - id: blocks.15.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15/trainer_3
+  - id: blocks.15.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15/trainer_4
+  - id: blocks.15.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15/trainer_5
+  - id: blocks.15.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_0
+  - id: blocks.15.hook_resid_post__trainer_0_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_154
+  - id: blocks.15.hook_resid_post__trainer_0_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_1544
+  - id: blocks.15.hook_resid_post__trainer_0_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_15440
+  - id: blocks.15.hook_resid_post__trainer_0_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_48
+  - id: blocks.15.hook_resid_post__trainer_0_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_488
+  - id: blocks.15.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_0
+  - id: blocks.15.hook_resid_post__trainer_1_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_154
+  - id: blocks.15.hook_resid_post__trainer_1_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_1544
+  - id: blocks.15.hook_resid_post__trainer_1_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_15440
+  - id: blocks.15.hook_resid_post__trainer_1_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_48
+  - id: blocks.15.hook_resid_post__trainer_1_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_488
+  - id: blocks.15.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_1_step_4882
+  - id: blocks.15.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_0
+  - id: blocks.15.hook_resid_post__trainer_2_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_154
+  - id: blocks.15.hook_resid_post__trainer_2_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_1544
+  - id: blocks.15.hook_resid_post__trainer_2_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_2_step_15440
+  - id: blocks.15.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_15_checkpoints/trainer_0_step_4882
+  - id: blocks.19.hook_resid_post__trainer_4_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_0
+  - id: blocks.19.hook_resid_post__trainer_3_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_4882
+  - id: blocks.19.hook_resid_post__trainer_3_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_488
+  - id: blocks.19.hook_resid_post__trainer_3_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_48
+  - id: blocks.19.hook_resid_post__trainer_3_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_15440
+  - id: blocks.19.hook_resid_post__trainer_3_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_1544
+  - id: blocks.19.hook_resid_post__trainer_3_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_154
+  - id: blocks.19.hook_resid_post__trainer_3_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_3_step_0
+  - id: blocks.19.hook_resid_post__trainer_0_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_154
+  - id: blocks.19.hook_resid_post__trainer_0_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_0
+  - id: blocks.19.hook_resid_post__trainer_5
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19/trainer_5
+  - id: blocks.19.hook_resid_post__trainer_4
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19/trainer_4
+  - id: blocks.19.hook_resid_post__trainer_3
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19/trainer_3
+  - id: blocks.19.hook_resid_post__trainer_2
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19/trainer_2
+  - id: blocks.19.hook_resid_post__trainer_1
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19/trainer_1
+  - id: blocks.19.hook_resid_post__trainer_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19/trainer_0
+  - id: blocks.19.hook_resid_post__trainer_0_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_1544
+  - id: blocks.19.hook_resid_post__trainer_0_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_15440
+  - id: blocks.19.hook_resid_post__trainer_0_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_48
+  - id: blocks.19.hook_resid_post__trainer_2_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_4882
+  - id: blocks.19.hook_resid_post__trainer_2_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_488
+  - id: blocks.19.hook_resid_post__trainer_2_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_48
+  - id: blocks.19.hook_resid_post__trainer_2_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_15440
+  - id: blocks.19.hook_resid_post__trainer_2_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_1544
+  - id: blocks.19.hook_resid_post__trainer_2_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_154
+  - id: blocks.19.hook_resid_post__trainer_2_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_2_step_0
+  - id: blocks.19.hook_resid_post__trainer_1_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_4882
+  - id: blocks.19.hook_resid_post__trainer_1_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_48
+  - id: blocks.19.hook_resid_post__trainer_1_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_1544
+  - id: blocks.19.hook_resid_post__trainer_1_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_154
+  - id: blocks.19.hook_resid_post__trainer_1_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_0
+  - id: blocks.19.hook_resid_post__trainer_0_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_4882
+  - id: blocks.19.hook_resid_post__trainer_0_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_0_step_488
+  - id: blocks.19.hook_resid_post__trainer_1_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_488
+  - id: blocks.19.hook_resid_post__trainer_1_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_1_step_15440
+  - id: blocks.19.hook_resid_post__trainer_4_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_1544
+  - id: blocks.19.hook_resid_post__trainer_4_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_15440
+  - id: blocks.19.hook_resid_post__trainer_4_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_48
+  - id: blocks.19.hook_resid_post__trainer_4_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_488
+  - id: blocks.19.hook_resid_post__trainer_4_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_4882
+  - id: blocks.19.hook_resid_post__trainer_5_step_0
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_0
+  - id: blocks.19.hook_resid_post__trainer_5_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_154
+  - id: blocks.19.hook_resid_post__trainer_5_step_1544
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_1544
+  - id: blocks.19.hook_resid_post__trainer_5_step_15440
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_15440
+  - id: blocks.19.hook_resid_post__trainer_5_step_48
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_48
+  - id: blocks.19.hook_resid_post__trainer_5_step_488
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_488
+  - id: blocks.19.hook_resid_post__trainer_5_step_4882
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_5_step_4882
+  - id: blocks.19.hook_resid_post__trainer_4_step_154
+    path: gemma-2-2b_sweep_topk_ctx128_ef8_0824/resid_post_layer_19_checkpoints/trainer_4_step_154
+sae_bench_pythia70m_sweep_gated_ctx128_0730:
+  conversion_func: dictionary_learning_1
+  links:
+    model: https://huggingface.co/EleutherAI/pythia-70m
+  model: pythia-70m
+  repo_id: canrager/lm_sae
+  saes:
+  - id: blocks.3.hook_resid_post__trainer_0
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_0
+  - id: blocks.3.hook_resid_post__trainer_1
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_1
+  - id: blocks.3.hook_resid_post__trainer_10
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_10
+  - id: blocks.3.hook_resid_post__trainer_11
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_11
+  - id: blocks.3.hook_resid_post__trainer_12
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_12
+  - id: blocks.3.hook_resid_post__trainer_13
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_13
+  - id: blocks.3.hook_resid_post__trainer_14
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_14
+  - id: blocks.3.hook_resid_post__trainer_15
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_15
+  - id: blocks.3.hook_resid_post__trainer_16
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_16
+  - id: blocks.3.hook_resid_post__trainer_17
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_17
+  - id: blocks.3.hook_resid_post__trainer_18
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_18
+  - id: blocks.3.hook_resid_post__trainer_19
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_19
+  - id: blocks.3.hook_resid_post__trainer_2
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_2
+  - id: blocks.3.hook_resid_post__trainer_3
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_3
+  - id: blocks.3.hook_resid_post__trainer_4
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_4
+  - id: blocks.3.hook_resid_post__trainer_5
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_5
+  - id: blocks.3.hook_resid_post__trainer_6
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_6
+  - id: blocks.3.hook_resid_post__trainer_7
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_7
+  - id: blocks.3.hook_resid_post__trainer_8
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_8
+  - id: blocks.3.hook_resid_post__trainer_9
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_3/trainer_9
+  - id: blocks.4.hook_resid_post__trainer_0
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_0
+  - id: blocks.4.hook_resid_post__trainer_1
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_1
+  - id: blocks.4.hook_resid_post__trainer_10
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_10
+  - id: blocks.4.hook_resid_post__trainer_11
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_11
+  - id: blocks.4.hook_resid_post__trainer_12
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_12
+  - id: blocks.4.hook_resid_post__trainer_13
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_13
+  - id: blocks.4.hook_resid_post__trainer_14
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_14
+  - id: blocks.4.hook_resid_post__trainer_15
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_15
+  - id: blocks.4.hook_resid_post__trainer_16
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_16
+  - id: blocks.4.hook_resid_post__trainer_17
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_17
+  - id: blocks.4.hook_resid_post__trainer_18
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_18
+  - id: blocks.4.hook_resid_post__trainer_19
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_19
+  - id: blocks.4.hook_resid_post__trainer_2
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_2
+  - id: blocks.4.hook_resid_post__trainer_3
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_3
+  - id: blocks.4.hook_resid_post__trainer_4
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_4
+  - id: blocks.4.hook_resid_post__trainer_5
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_5
+  - id: blocks.4.hook_resid_post__trainer_6
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_6
+  - id: blocks.4.hook_resid_post__trainer_7
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_7
+  - id: blocks.4.hook_resid_post__trainer_8
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_8
+  - id: blocks.4.hook_resid_post__trainer_9
+    path: pythia70m_sweep_gated_ctx128_0730/resid_post_layer_4/trainer_9
+sae_bench_pythia70m_sweep_panneal_ctx128_0730:
+  conversion_func: dictionary_learning_1
+  links:
+    model: https://huggingface.co/EleutherAI/pythia-70m
+  model: pythia-70m
+  repo_id: canrager/lm_sae
+  saes:
+  - id: blocks.3.hook_resid_post__trainer_0
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_0
+  - id: blocks.3.hook_resid_post__trainer_1
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_1
+  - id: blocks.3.hook_resid_post__trainer_10
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_10
+  - id: blocks.3.hook_resid_post__trainer_11
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_11
+  - id: blocks.3.hook_resid_post__trainer_12
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_12
+  - id: blocks.3.hook_resid_post__trainer_13
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_13
+  - id: blocks.3.hook_resid_post__trainer_14
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_14
+  - id: blocks.3.hook_resid_post__trainer_15
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_15
+  - id: blocks.3.hook_resid_post__trainer_16
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_16
+  - id: blocks.3.hook_resid_post__trainer_17
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_17
+  - id: blocks.3.hook_resid_post__trainer_18
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_18
+  - id: blocks.3.hook_resid_post__trainer_19
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_19
+  - id: blocks.3.hook_resid_post__trainer_2
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_2
+  - id: blocks.3.hook_resid_post__trainer_20
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_20
+  - id: blocks.3.hook_resid_post__trainer_21
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_21
+  - id: blocks.3.hook_resid_post__trainer_22
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_22
+  - id: blocks.3.hook_resid_post__trainer_23
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_23
+  - id: blocks.3.hook_resid_post__trainer_24
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_24
+  - id: blocks.3.hook_resid_post__trainer_25
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_25
+  - id: blocks.3.hook_resid_post__trainer_26
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_26
+  - id: blocks.3.hook_resid_post__trainer_27
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_27
+  - id: blocks.3.hook_resid_post__trainer_3
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_3
+  - id: blocks.3.hook_resid_post__trainer_4
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_4
+  - id: blocks.3.hook_resid_post__trainer_5
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_5
+  - id: blocks.3.hook_resid_post__trainer_6
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_6
+  - id: blocks.3.hook_resid_post__trainer_7
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_7
+  - id: blocks.3.hook_resid_post__trainer_8
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_8
+  - id: blocks.3.hook_resid_post__trainer_9
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_3/trainer_9
+  - id: blocks.4.hook_resid_post__trainer_0
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_0
+  - id: blocks.4.hook_resid_post__trainer_1
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_1
+  - id: blocks.4.hook_resid_post__trainer_10
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_10
+  - id: blocks.4.hook_resid_post__trainer_11
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_11
+  - id: blocks.4.hook_resid_post__trainer_12
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_12
+  - id: blocks.4.hook_resid_post__trainer_13
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_13
+  - id: blocks.4.hook_resid_post__trainer_14
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_14
+  - id: blocks.4.hook_resid_post__trainer_15
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_15
+  - id: blocks.4.hook_resid_post__trainer_16
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_16
+  - id: blocks.4.hook_resid_post__trainer_17
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_17
+  - id: blocks.4.hook_resid_post__trainer_18
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_18
+  - id: blocks.4.hook_resid_post__trainer_19
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_19
+  - id: blocks.4.hook_resid_post__trainer_2
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_2
+  - id: blocks.4.hook_resid_post__trainer_20
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_20
+  - id: blocks.4.hook_resid_post__trainer_21
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_21
+  - id: blocks.4.hook_resid_post__trainer_22
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_22
+  - id: blocks.4.hook_resid_post__trainer_23
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_23
+  - id: blocks.4.hook_resid_post__trainer_24
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_24
+  - id: blocks.4.hook_resid_post__trainer_25
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_25
+  - id: blocks.4.hook_resid_post__trainer_26
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_26
+  - id: blocks.4.hook_resid_post__trainer_27
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_27
+  - id: blocks.4.hook_resid_post__trainer_3
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_3
+  - id: blocks.4.hook_resid_post__trainer_4
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_4
+  - id: blocks.4.hook_resid_post__trainer_5
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_5
+  - id: blocks.4.hook_resid_post__trainer_6
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_6
+  - id: blocks.4.hook_resid_post__trainer_7
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_7
+  - id: blocks.4.hook_resid_post__trainer_8
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_8
+  - id: blocks.4.hook_resid_post__trainer_9
+    path: pythia70m_sweep_panneal_ctx128_0730/resid_post_layer_4/trainer_9
+sae_bench_pythia70m_sweep_standard_ctx128_0712:
+  conversion_func: dictionary_learning_1
+  links:
+    model: https://huggingface.co/EleutherAI/pythia-70m
+  model: pythia-70m
+  repo_id: canrager/lm_sae
+  saes:
+  - id: blocks.3.hook_resid_post__trainer_0
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_0
+  - id: blocks.3.hook_resid_post__trainer_1
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_1
+  - id: blocks.3.hook_resid_post__trainer_10
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_10
+  - id: blocks.3.hook_resid_post__trainer_11
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_11
+  - id: blocks.3.hook_resid_post__trainer_12
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_12
+  - id: blocks.3.hook_resid_post__trainer_13
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_13
+  - id: blocks.3.hook_resid_post__trainer_14
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_14
+  - id: blocks.3.hook_resid_post__trainer_15
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_15
+  - id: blocks.3.hook_resid_post__trainer_16
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_16
+  - id: blocks.3.hook_resid_post__trainer_17
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_17
+  - id: blocks.3.hook_resid_post__trainer_18
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_18
+  - id: blocks.3.hook_resid_post__trainer_19
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_19
+  - id: blocks.3.hook_resid_post__trainer_2
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_2
+  - id: blocks.3.hook_resid_post__trainer_3
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_3
+  - id: blocks.3.hook_resid_post__trainer_4
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_4
+  - id: blocks.3.hook_resid_post__trainer_5
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_5
+  - id: blocks.3.hook_resid_post__trainer_6
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_6
+  - id: blocks.3.hook_resid_post__trainer_7
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_7
+  - id: blocks.3.hook_resid_post__trainer_8
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_8
+  - id: blocks.3.hook_resid_post__trainer_9
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_3/trainer_9
+  - id: blocks.4.hook_resid_post__trainer_0
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_0
+  - id: blocks.4.hook_resid_post__trainer_1
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_1
+  - id: blocks.4.hook_resid_post__trainer_10
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_10
+  - id: blocks.4.hook_resid_post__trainer_11
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_11
+  - id: blocks.4.hook_resid_post__trainer_12
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_12
+  - id: blocks.4.hook_resid_post__trainer_13
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_13
+  - id: blocks.4.hook_resid_post__trainer_14
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_14
+  - id: blocks.4.hook_resid_post__trainer_15
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_15
+  - id: blocks.4.hook_resid_post__trainer_16
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_16
+  - id: blocks.4.hook_resid_post__trainer_17
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_17
+  - id: blocks.4.hook_resid_post__trainer_18
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_18
+  - id: blocks.4.hook_resid_post__trainer_19
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_19
+  - id: blocks.4.hook_resid_post__trainer_2
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_2
+  - id: blocks.4.hook_resid_post__trainer_20
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_20
+  - id: blocks.4.hook_resid_post__trainer_21
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_21
+  - id: blocks.4.hook_resid_post__trainer_22
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_22
+  - id: blocks.4.hook_resid_post__trainer_23
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_23
+  - id: blocks.4.hook_resid_post__trainer_3
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_3
+  - id: blocks.4.hook_resid_post__trainer_4
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_4
+  - id: blocks.4.hook_resid_post__trainer_5
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_5
+  - id: blocks.4.hook_resid_post__trainer_6
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_6
+  - id: blocks.4.hook_resid_post__trainer_7
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_7
+  - id: blocks.4.hook_resid_post__trainer_8
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_8
+  - id: blocks.4.hook_resid_post__trainer_9
+    path: pythia70m_sweep_standard_ctx128_0712/resid_post_layer_4/trainer_9
+sae_bench_pythia70m_sweep_topk_ctx128_0730:
+  conversion_func: dictionary_learning_1
+  links:
+    model: https://huggingface.co/EleutherAI/pythia-70m
+  model: pythia-70m
+  repo_id: canrager/lm_sae
+  saes:
+  - id: blocks.3.hook_resid_post__trainer_0
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_0
+  - id: blocks.3.hook_resid_post__trainer_1
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_1
+  - id: blocks.3.hook_resid_post__trainer_10
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_10
+  - id: blocks.3.hook_resid_post__trainer_11
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_11
+  - id: blocks.3.hook_resid_post__trainer_12
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_12
+  - id: blocks.3.hook_resid_post__trainer_13
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_13
+  - id: blocks.3.hook_resid_post__trainer_14
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_14
+  - id: blocks.3.hook_resid_post__trainer_15
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_15
+  - id: blocks.3.hook_resid_post__trainer_16
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_16
+  - id: blocks.3.hook_resid_post__trainer_17
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_17
+  - id: blocks.3.hook_resid_post__trainer_18
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_18
+  - id: blocks.3.hook_resid_post__trainer_19
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_19
+  - id: blocks.3.hook_resid_post__trainer_2
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_2
+  - id: blocks.3.hook_resid_post__trainer_20
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_20
+  - id: blocks.3.hook_resid_post__trainer_21
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_21
+  - id: blocks.3.hook_resid_post__trainer_22
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_22
+  - id: blocks.3.hook_resid_post__trainer_23
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_23
+  - id: blocks.3.hook_resid_post__trainer_3
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_3
+  - id: blocks.3.hook_resid_post__trainer_4
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_4
+  - id: blocks.3.hook_resid_post__trainer_5
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_5
+  - id: blocks.3.hook_resid_post__trainer_6
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_6
+  - id: blocks.3.hook_resid_post__trainer_7
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_7
+  - id: blocks.3.hook_resid_post__trainer_8
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_8
+  - id: blocks.3.hook_resid_post__trainer_9
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_3/trainer_9
+  - id: blocks.4.hook_resid_post__trainer_0
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_0
+  - id: blocks.4.hook_resid_post__trainer_1
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_1
+  - id: blocks.4.hook_resid_post__trainer_10
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_10
+  - id: blocks.4.hook_resid_post__trainer_11
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_11
+  - id: blocks.4.hook_resid_post__trainer_12
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_12
+  - id: blocks.4.hook_resid_post__trainer_13
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_13
+  - id: blocks.4.hook_resid_post__trainer_14
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_14
+  - id: blocks.4.hook_resid_post__trainer_15
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_15
+  - id: blocks.4.hook_resid_post__trainer_16
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_16
+  - id: blocks.4.hook_resid_post__trainer_17
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_17
+  - id: blocks.4.hook_resid_post__trainer_18
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_18
+  - id: blocks.4.hook_resid_post__trainer_19
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_19
+  - id: blocks.4.hook_resid_post__trainer_2
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_2
+  - id: blocks.4.hook_resid_post__trainer_20
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_20
+  - id: blocks.4.hook_resid_post__trainer_21
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_21
+  - id: blocks.4.hook_resid_post__trainer_22
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_22
+  - id: blocks.4.hook_resid_post__trainer_23
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_23
+  - id: blocks.4.hook_resid_post__trainer_3
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_3
+  - id: blocks.4.hook_resid_post__trainer_4
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_4
+  - id: blocks.4.hook_resid_post__trainer_5
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_5
+  - id: blocks.4.hook_resid_post__trainer_6
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_6
+  - id: blocks.4.hook_resid_post__trainer_7
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_7
+  - id: blocks.4.hook_resid_post__trainer_8
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_8
+  - id: blocks.4.hook_resid_post__trainer_9
+    path: pythia70m_sweep_topk_ctx128_0730/resid_post_layer_4/trainer_9
+llama-3-8b-it-res-jh:
+  repo_id: Juliushanhanhan/llama-3-8b-it-res
+  model: "meta-llama/Meta-Llama-3-8B-Instruct"
+  conversion_func: null
+  links:
+    dashboards: https://www.neuronpedia.org/llama3-8b-it-res-jh
+  saes:
+  - id: blocks.25.hook_resid_post
+    path: blocks.25.hook_resid_post
+    neuronpedia: llama3-8b-it/25-res-jh
